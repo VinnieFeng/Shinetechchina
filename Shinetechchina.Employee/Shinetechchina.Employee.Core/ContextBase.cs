@@ -20,7 +20,7 @@ namespace Shinetechchina.Employee.Core
     public abstract class ContextBase : IServiceProvider//, IDisposable
     {
         private DependencyResolver provider;
-
+       
         protected ContextBase()
         {
             //InitializeWindsor();
@@ -47,6 +47,7 @@ namespace Shinetechchina.Employee.Core
             container.Install(installer);
 
             provider = new DependencyResolver(container.Kernel);
+            
         }
         private class BusinessInstaller : IWindsorInstaller
         {

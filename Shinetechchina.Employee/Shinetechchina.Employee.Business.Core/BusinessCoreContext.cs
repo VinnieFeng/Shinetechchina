@@ -1,44 +1,30 @@
 ﻿using Shinetechchina.Employee.Business.Shared;
 using Shinetechchina.Employee.Core;
 using Shinetechchina.Employee.Repository.Core;
-
+using System;
 using System.Collections.Generic;
 
 namespace Shinetechchina.Employee.Business.Core
 {
 
-    public class BusinessOptions
-    {
-        public bool IsBusinessMock { get; set; }
-        public bool IsRepositoryMock { get; set; }
-    }
+
 
     public class BusinessCoreContext : ContextBase
     {
         private static Employee.Core.IServiceProvider current;
 
+      static  RepositoryCoreContext ctx = ContextDictionary.Get<RepositoryCoreContext>();
 
-
-        public ContextBase RepositoryContext { get; set; }
+        public static  ContextBase RepositoryContext
+        {
+            get { return ctx; }
+            set { ctx = value as RepositoryCoreContext; }
+        }
         public BusinessCoreContext(ContextBase repositoryContext)
         {
-            RepositoryContext = repositoryContext;
+            ctx = repositoryContext as RepositoryCoreContext;
         }
-        public BusinessCoreContext(BusinessOptions options)
-        {
-            //  Options = options;
 
-            if (options.IsRepositoryMock)
-            {
-                //RepositoryContext = new RepositoryMockContext();
-            }
-            else
-            {
-                RepositoryContext = new RepositoryCoreContext();
-            }
-
-
-        }
 
 
         public override Dictionary<Type, Type> GetRegister()

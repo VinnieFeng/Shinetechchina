@@ -51,6 +51,7 @@
     <Compile Include="BusinessCoreContext.cs" />
     <Compile Include="Implementation\EmployeeMgr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

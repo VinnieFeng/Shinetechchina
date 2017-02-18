@@ -8,7 +8,7 @@ namespace Shinetechchina.Employee.Business.Core
     {
         public IEnumerable<EmployeeModel> GetAllEmployee()
         {
-            throw new NotImplementedException();
+            BusinessCoreContext.RepositoryContext.
         }
 
         public EmployeeModel GetEmployee(string ID)

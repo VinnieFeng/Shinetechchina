@@ -47,7 +47,7 @@ namespace Shinetechchina.Employee.Web
 
         public ContextBase BusinessContext { get; set; }
         public ContextBase RepositoryContext { get; set; }
-        public ContextBase GatewayContext { get; set; }
+
 
         public ApplicationOptions Options { get; }
 
@@ -66,7 +66,7 @@ namespace Shinetechchina.Employee.Web
 
             if (options.IsBusinessMock)
             {
-             //   BusinessContext = new BusinessMockContext();
+                //   BusinessContext = new BusinessMockContext();
             }
             else
             {
@@ -76,8 +76,8 @@ namespace Shinetechchina.Employee.Web
 
         public T GetService<T>()
         {
-      
-                return BusinessContext.GetService<T>();
+
+            return BusinessContext.GetService<T>();
 
         }
 
@@ -87,8 +87,9 @@ namespace Shinetechchina.Employee.Web
 
 
             BusinessContext.Initialize();
+            ContextDictionary.Add<RepositoryCoreContext>(RepositoryContext);
 
-          
+            ContextDictionary.Add<BusinessCoreContext>(BusinessContext);
         }
 
     }
