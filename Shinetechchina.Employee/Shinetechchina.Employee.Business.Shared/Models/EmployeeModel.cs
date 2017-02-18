@@ -2,7 +2,7 @@
 
 namespace Shinetechchina.Employee.Business.Shared
 {
-    public class Employee
+    public class EmployeeModel
     {
         public Guid Id { get; set; }
         public string EmployeeID { get; set; }

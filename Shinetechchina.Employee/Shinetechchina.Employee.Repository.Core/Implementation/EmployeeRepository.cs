@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Shinetechchina.Employee.Repository.Shared;
 using Shinetechchina.Employee.Repository.Shared.Models;
 
-namespace Shinetechchina.Employee.Repository.Core.Implementation
+namespace Shinetechchina.Employee.Repository.Core
 {
     class EmployeeRepository : IEmployeeRepository
     {

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shinetechchina.Employee.Business.Shared.Contracts
+namespace Shinetechchina.Employee.Business.Shared
 {
     public interface IEmployeeMgr
     {
-        Employee GetEmployee(string ID);
-        IEnumerable<Employee> GetAllEmployee();
+        EmployeeModel GetEmployee(string ID);
+        IEnumerable<EmployeeModel> GetAllEmployee();
     }
 }
