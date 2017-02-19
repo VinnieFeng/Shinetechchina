@@ -11,18 +11,18 @@ namespace Shinetechchina.Employee.Business.Core
 
     public class BusinessCoreContext : ContextBase
     {
-        private static Employee.Core.IServiceProvider current;
+      //  private static Employee.Core.IServiceProvider current;
 
-      static  RepositoryCoreContext ctx = ContextDictionary.Get<RepositoryCoreContext>();
+      //static  RepositoryCoreContext ctx = ContextDictionary.Get<RepositoryCoreContext>();
 
-        public static  ContextBase RepositoryContext
-        {
-            get { return ctx; }
-            set { ctx = value as RepositoryCoreContext; }
-        }
+        //public static  ContextBase RepositoryContext
+        //{
+        //    get { return ctx; }
+        //    set { ctx = value as RepositoryCoreContext; }
+        //}
         public BusinessCoreContext(ContextBase repositoryContext)
         {
-            ctx = repositoryContext as RepositoryCoreContext;
+           // ctx = repositoryContext as RepositoryCoreContext;
         }
 
 
