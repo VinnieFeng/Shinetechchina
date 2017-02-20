@@ -15,11 +15,15 @@ namespace Shinetechchina.Employee.Business.Core
             _employeeRepository = employeeRepository;
         }
 
-        public EmployeeModel AddEmployee(EmployeeModel employee)
+        public bool AddEmployee(EmployeeModel employee)
         {
             var emp = employee.ToEntry();
-            var empEntity = _employeeRepository.AddEmployee(emp);
-            return new EmployeeModel(empEntity);
+            emp.EmployeeID = DateTime.Now.Ticks.ToString();
+            emp.Created = DateTime.Now;
+            emp.Modified = DateTime.Now;
+            emp.Id = Guid.NewGuid();
+            int insertRowsCount = _employeeRepository.AddEmployee(emp);
+            return insertRowsCount == 1;
         }
 
         public bool DeleteEmployee(EmployeeModel employee)
@@ -43,7 +47,9 @@ namespace Shinetechchina.Employee.Business.Core
 
         public bool UpdateEmployee(EmployeeModel employee)
         {
-            int effectRows = _employeeRepository.UpdateEmployee(employee.ToEntry());
+            var emp = employee.ToEntry();
+            emp.Modified = DateTime.Now;
+            int effectRows = _employeeRepository.UpdateEmployee(emp);
             return effectRows > 0;
         }
     }

@@ -1,0 +1,96 @@
+﻿@model Shinetechchina.Employee.Web.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Employee";
+}
+
+<h2>@ViewBag.Title.</h2>
+<hr />
+
+<div ng-app="employeeApp" ng-controller="employeeCtrl">
+    <div class="form-group">
+        <button class="btn btn-success" ng-click="openAddForm()">
+            <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Create New Customer
+        </button>
+    </div>
+    <div class="form-group">
+        <table style="width:100%;">
+            <thead>
+                <tr>
+                    <th>EmployeeID</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="c in EmployeeList">
+                    <td ng-class-odd="'odd'">{{ c.EmployeeID }}</td>
+                    <td ng-class-odd="'odd'">{{ c.FirstName }}</td>
+                    <td ng-class-odd="'odd'">{{ c.LastName }}</td>
+                    <td ng-class-odd="'odd'">{{ c.Phone }}</td>
+                    <td ng-class-odd="'odd'">{{ c.Email }}</td>
+                    <td ng-class-odd="'odd'">
+                        <button class="btn" ng-click="editCustomer(c)">
+                            <span class="glyphicon glyphicon-pencil" style="color:blue"></span>&nbsp;&nbsp;Edit
+                        </button>
+                        <button class="btn" ng-click="delCustomer(c.EmployeeID)">
+                            <span class="glyphicon glyphicon-remove" style="color:red"></span>&nbsp;&nbsp;Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+        </table>
+    </div>
+
+    <div class="modal fade" id="formModal" style="height:800px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myModalLabel">Employee Information</h4>
+                    <input type="hidden" ng-model="Employee.EmployeeID" name="EmployeeID" />
+                </div>
+                <div class="modal-body" style="height:150px;">
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">First Name</label>
+                        <div class="col-md-8">
+                            <input class="form-control" ng-model="Employee.FirstName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Last Name</label>
+                        <div class="col-md-8">
+                            <input class="form-control" ng-model="Employee.LastName" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Phone</label>
+                        <div class="col-md-8">
+                            <input class="form-control" ng-model="Employee.Phone" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Email</label>
+                        <div class="col-md-8">
+                            <input class="form-control" ng-model="Employee.Email" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="addEmployee()">提交更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div>
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script src="~/Scripts/angular.js"></script>
+<script src="~/AppScripts/Employee.js"></script>

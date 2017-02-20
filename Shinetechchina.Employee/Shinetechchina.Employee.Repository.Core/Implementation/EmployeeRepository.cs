@@ -7,13 +7,14 @@ namespace Shinetechchina.Employee.Repository.Core
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        public EmployeeEntry AddEmployee(EmployeeEntry employee)
+        public int AddEmployee(EmployeeEntry employee)
         {
             using (EmployeeDbContext ctx = new EmployeeDbContext())
             {
                 EmployeeEntity employeeEntity = employee.ToEntity();
                 employeeEntity = ctx.Employees.Add(employeeEntity);
-                return employeeEntity.ToEntry();
+                int affectRows = ctx.SaveChanges();
+                return affectRows;
             }
         }
 
@@ -51,7 +52,11 @@ namespace Shinetechchina.Employee.Repository.Core
             using (EmployeeDbContext ctx = new EmployeeDbContext())
             {
                 var entity = ctx.Employees.FirstOrDefault(t => t.EmployeeID == employee.EmployeeID);
-                entity = employee.ToEntity();
+                entity.Email = employee.Email;
+                entity.EmployeeID = employee.EmployeeID;
+                entity.FirstName = employee.FirstName;
+                entity.LastName = employee.LastName;
+                entity.Phone = employee.Phone;
                 ctx.Entry(entity).State = EntityState.Modified;
                 return ctx.SaveChanges();
             }

@@ -6,7 +6,7 @@ namespace Shinetechchina.Employee.Repository.Shared
     {
         EmployeeEntry GetEmployee(string id);
         IEnumerable<EmployeeEntry> GetAllEmployee();
-        EmployeeEntry AddEmployee(EmployeeEntry employee);
+        int AddEmployee(EmployeeEntry employee);
         int DeleteEmployee(EmployeeEntry employee);
         int UpdateEmployee(EmployeeEntry employee);
     }
