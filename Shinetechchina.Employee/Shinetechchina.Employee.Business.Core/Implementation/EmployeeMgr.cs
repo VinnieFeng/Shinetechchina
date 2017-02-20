@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using Shinetechchina.Employee.Business.Shared;
 using Shinetechchina.Employee.Repository.Shared;
@@ -16,42 +17,34 @@ namespace Shinetechchina.Employee.Business.Core
 
         public EmployeeModel AddEmployee(EmployeeModel employee)
         {
-            throw new NotImplementedException();
+            var emp = employee.ToEntry();
+            var empEntity = _employeeRepository.AddEmployee(emp);
+            return new EmployeeModel(empEntity);
         }
 
-        public EmployeeModel DeleteEmployee(EmployeeModel employee)
+        public bool DeleteEmployee(EmployeeModel employee)
         {
-            throw new NotImplementedException();
+            var emp = employee.ToEntry();
+            int effectRows = _employeeRepository.DeleteEmployee(emp);
+            return effectRows > 0;
         }
 
         public IEnumerable<EmployeeModel> GetAllEmployee()
         {
-            //var repo = GetRepository<IEmployeeRepository>();
-            //List<EmployeeModel> employeeList = new List<EmployeeModel>();
-            //employeeList.Add(new EmployeeModel { Email = "aaa@aaa.com", EmployeeID = "EmployeeID", FirstName = "FirstName", LastName = "LastName", Gender = "Male", Id = Guid.NewGuid(), Married = false, Phone = "Phone" });
-            //return employeeList;
-            throw new NotImplementedException();
+            var empEntity = _employeeRepository.GetAllEmployee().Select(t => new EmployeeModel(t));
+            return empEntity;
         }
 
-        public EmployeeModel GetEmployee(string ID)
+        public EmployeeModel GetEmployee(string id)
         {
-            EmployeeModel employee = new EmployeeModel
-            {
-                Email = "aaa@aaa.com",
-                EmployeeID = "EmployeeID",
-                FirstName = "FirstName",
-                LastName = "LastName",
-                Gender = "Male",
-                Id = Guid.NewGuid(),
-                Married = false,
-                Phone = "Phone"
-            };
-            return employee;
+            var empEntity = _employeeRepository.GetEmployee(id);
+            return new EmployeeModel(empEntity);
         }
 
-        public EmployeeModel UpdateEmployee(EmployeeModel employee)
+        public bool UpdateEmployee(EmployeeModel employee)
         {
-            throw new NotImplementedException();
+            int effectRows = _employeeRepository.UpdateEmployee(employee.ToEntry());
+            return effectRows > 0;
         }
     }
 }

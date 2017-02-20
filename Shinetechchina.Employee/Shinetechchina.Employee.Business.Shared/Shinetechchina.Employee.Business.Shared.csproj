@@ -44,7 +44,12 @@
     <Compile Include="Models\EmployeeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Shinetechchina.Employee.Repository.Shared\Shinetechchina.Employee.Repository.Shared.csproj">
+      <Project>{888AC7DB-9943-4CCF-ADB9-2B11DBDE5DEC}</Project>
+      <Name>Shinetechchina.Employee.Repository.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

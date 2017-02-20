@@ -8,10 +8,10 @@ namespace Shinetechchina.Employee.Business.Shared
 {
     public interface IEmployeeMgr
     {
-        EmployeeModel GetEmployee(string ID);
+        EmployeeModel GetEmployee(string id);
         IEnumerable<EmployeeModel> GetAllEmployee();
-        EmployeeModel UpdateEmployee(EmployeeModel employee);
+        bool UpdateEmployee(EmployeeModel employee);
         EmployeeModel AddEmployee(EmployeeModel employee);
-        EmployeeModel DeleteEmployee(EmployeeModel employee);
+        bool DeleteEmployee(EmployeeModel employee);
     }
 }

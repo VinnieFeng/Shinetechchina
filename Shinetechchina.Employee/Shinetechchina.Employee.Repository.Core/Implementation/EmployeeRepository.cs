@@ -31,7 +31,7 @@ namespace Shinetechchina.Employee.Repository.Core
         {
             using (EmployeeDbContext ctx = new EmployeeDbContext())
             {
-                var employees = ctx.Employees.Select(t => t.ToEntry()).ToList();
+                var employees = ctx.Employees.ToList().Select(t => t.ToEntry());
                 return employees;
             }
 

@@ -21,7 +21,7 @@ namespace Shinetechchina.Employee.Repository.Shared
         [StringLength(50)]
         public string LastName { get; set; }
 
-        public bool Gender { get; set; }
+        public string Gender { get; set; }
 
         public bool? Married { get; set; }
 
