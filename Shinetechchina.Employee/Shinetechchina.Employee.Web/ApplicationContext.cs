@@ -87,9 +87,7 @@ namespace Shinetechchina.Employee.Web
 
 
             BusinessContext.Initialize();
-            ContextDictionary.Add<RepositoryCoreContext>(RepositoryContext);
-
-            ContextDictionary.Add<BusinessCoreContext>(BusinessContext);
+         
         }
 
     }

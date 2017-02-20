@@ -16,6 +16,7 @@ namespace Shinetechchina.Employee.Core
             {
                 ContextBaseDictionary.Add(typeof(T), ctx);
             }
+           
 
         }
 

@@ -1,11 +1,4 @@
-﻿using Castle.Windsor;
-using Shinetechchina.Employee.Core;
-using Shinetechchina.Employee.Web.Infrastructure.Installer;
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
+﻿using Shinetechchina.Employee.Core;
 using System.Web.Mvc;
 
 namespace Shinetechchina.Employee.Web.Controllers

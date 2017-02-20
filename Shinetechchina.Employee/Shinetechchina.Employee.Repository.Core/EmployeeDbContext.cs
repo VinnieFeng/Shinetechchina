@@ -1,14 +1,11 @@
 namespace Shinetechchina.Employee.Repository.Core
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-    using Shared.Models;
+    using Shared;
 
-    public partial class EmployeeContext : DbContext
+    public partial class EmployeeDbContext : DbContext
     {
-        public EmployeeContext()
+        public EmployeeDbContext()
             : base("name=EmployeeContext")
         {
         }

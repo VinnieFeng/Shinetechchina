@@ -51,7 +51,6 @@
     <Compile Include="BusinessCoreContext.cs" />
     <Compile Include="Implementation\EmployeeMgr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RepositoryFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -68,6 +67,10 @@
     <ProjectReference Include="..\Shinetechchina.Employee.Repository.Core\Shinetechchina.Employee.Repository.Core.csproj">
       <Project>{8AF82A8A-12B2-4B17-A85B-7DD3690289AB}</Project>
       <Name>Shinetechchina.Employee.Repository.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shinetechchina.Employee.Repository.Shared\Shinetechchina.Employee.Repository.Shared.csproj">
+      <Project>{888AC7DB-9943-4CCF-ADB9-2B11DBDE5DEC}</Project>
+      <Name>Shinetechchina.Employee.Repository.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

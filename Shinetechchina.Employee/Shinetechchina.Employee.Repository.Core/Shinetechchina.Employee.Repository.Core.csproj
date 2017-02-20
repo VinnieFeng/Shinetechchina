@@ -59,7 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EmployeeContext.cs" />
+    <Compile Include="EmployeeDbContext.cs" />
     <Compile Include="Implementation\EmployeeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositoryCoreContext.cs" />

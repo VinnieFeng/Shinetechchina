@@ -7,5 +7,7 @@
 	[Gender] [bit] NOT NULL,
 	[Married] [bit] NULL,
 	[Phone] [nvarchar](50) NULL,
-	[Email] [nvarchar](50) NULL,
+	[Email] [nvarchar](50) NULL, 
+    [Created] DATETIME NOT NULL, 
+    [Modified] DATETIME NOT NULL,
 )

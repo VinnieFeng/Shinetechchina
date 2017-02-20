@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Shinetechchina.Employee.Repository.Shared.Models;
+﻿using System.Collections.Generic;
 
 namespace Shinetechchina.Employee.Repository.Shared
 {
@@ -11,5 +6,8 @@ namespace Shinetechchina.Employee.Repository.Shared
     {
         EmployeeEntry GetEmployee(string id);
         IEnumerable<EmployeeEntry> GetAllEmployee();
+        EmployeeEntry AddEmployee(EmployeeEntry employee);
+        int DeleteEmployee(EmployeeEntry employee);
+        int UpdateEmployee(EmployeeEntry employee);
     }
 }

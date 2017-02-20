@@ -10,5 +10,8 @@ namespace Shinetechchina.Employee.Business.Shared
     {
         EmployeeModel GetEmployee(string ID);
         IEnumerable<EmployeeModel> GetAllEmployee();
+        EmployeeModel UpdateEmployee(EmployeeModel employee);
+        EmployeeModel AddEmployee(EmployeeModel employee);
+        EmployeeModel DeleteEmployee(EmployeeModel employee);
     }
 }
