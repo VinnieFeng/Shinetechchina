@@ -189,7 +189,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\EmployeeApiController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -1064,6 +1064,10 @@
     <ProjectReference Include="..\Shinetechchina.Employee.Business.Core\Shinetechchina.Employee.Business.Core.csproj">
       <Project>{266F2ABC-AF75-4585-89A7-A976A04EDCB4}</Project>
       <Name>Shinetechchina.Employee.Business.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shinetechchina.Employee.Business.Mock\Shinetechchina.Employee.Business.Mock.csproj">
+      <Project>{2D5DF7AE-2FF4-4282-80FC-A51EDD59E7DD}</Project>
+      <Name>Shinetechchina.Employee.Business.Mock</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shinetechchina.Employee.Business.Shared\Shinetechchina.Employee.Business.Shared.csproj">
       <Project>{EDE87ED8-2FE7-41E2-82AB-3F1A2D59616D}</Project>

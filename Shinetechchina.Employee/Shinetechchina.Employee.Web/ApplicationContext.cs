@@ -6,7 +6,7 @@ using Shinetechchina.Employee.Web.Properties;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using Shinetechchina.Employee.Business.Mock;
 
 namespace Shinetechchina.Employee.Web
 {
@@ -47,8 +47,6 @@ namespace Shinetechchina.Employee.Web
 
         public ContextBase BusinessContext { get; set; }
         public ContextBase RepositoryContext { get; set; }
-
-
         public ApplicationOptions Options { get; }
 
         public ApplicationContext(ApplicationOptions options)
@@ -66,7 +64,7 @@ namespace Shinetechchina.Employee.Web
 
             if (options.IsBusinessMock)
             {
-                //   BusinessContext = new BusinessMockContext();
+                  BusinessContext = new BusinessMockContext();
             }
             else
             {
@@ -85,9 +83,7 @@ namespace Shinetechchina.Employee.Web
         {
             RepositoryContext.Initialize();
 
-
             BusinessContext.Initialize();
-         
         }
 
     }

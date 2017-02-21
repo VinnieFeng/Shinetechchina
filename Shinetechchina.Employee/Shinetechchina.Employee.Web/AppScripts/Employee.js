@@ -1,11 +1,12 @@
 ﻿(function (Employee, undefined) {
     var module = angular.module('employeeApp', []);
     module.controller('employeeCtrl', function ($scope, $http) {
+        $scope.EmployeeApiUri = "/api/Employees";
         $scope.EmployeeList = [];
         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '', IsAdd: false };
 
         $scope.loadEmployeeList = function loadEmployeeList() {
-            $http.get("/api/Employees").then(function (response) {
+            $http.get($scope.EmployeeApiUri).then(function (response) {
                 $scope.EmployeeList = response.data;
             }, function (e) {
                 //error method
@@ -14,8 +15,7 @@
 
         $scope.addEmployee = function () {
             if ($scope.Employee.IsAdd) {
-              
-                $http.post("/api/Employees", $scope.Employee).then(function (response) {
+                $http.post($scope.EmployeeApiUri, $scope.Employee).then(function (response) {
                     if (response.data) {
                         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
                         $scope.loadEmployeeList();
@@ -27,7 +27,7 @@
                     //save fail 
                 });
             } else {
-                $http.put("/api/Employees/" + $scope.Employee.EmployeeID, $scope.Employee).then(function (response) {
+                $http.put($scope.EmployeeApiUri + $scope.Employee.EmployeeID, $scope.Employee).then(function (response) {
                     if (response.data) {
                         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
                         $scope.loadEmployeeList();
@@ -39,14 +39,13 @@
                     //save fail 
                 });
             }
-
         };
 
         // Delete one customer based on id.
         $scope.delEmployee = function (id) {
             if (confirm("Are you sure you want to delete this customer?")) {
                 // todo code for deletion
-                $http.delete("/api/Employees/" + id).then(function (response) {
+                $http.delete($scope.EmployeeApiUri + id).then(function (response) {
                     if (response.data) {
                         alert("Deleted successfully.");
                         // Refresh list
