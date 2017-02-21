@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shinetechchina.Employee.Web", "Shinetechchina.Employee.Web\Shinetechchina.Employee.Web.csproj", "{C97DA497-D77D-4C3C-8EDF-F82458917A4D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shinetechchina.Employee.Web.Tests", "Shinetechchina.Employee.Web.Tests\Shinetechchina.Employee.Web.Tests.csproj", "{432BDBBE-2DE6-47D0-89AA-C222D51F0CA3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shinetechchina.Employee.Web.Test", "Shinetechchina.Employee.Web.Tests\Shinetechchina.Employee.Web.Test.csproj", "{432BDBBE-2DE6-47D0-89AA-C222D51F0CA3}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Shinetechchina.Employee.Database", "Shinetechchina.Employee.Database\Shinetechchina.Employee.Database.sqlproj", "{58947707-C92B-4409-AD53-887ECF6BC7A8}"
 EndProject
