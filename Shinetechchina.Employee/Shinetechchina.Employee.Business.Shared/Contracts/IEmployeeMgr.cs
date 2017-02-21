@@ -12,6 +12,6 @@ namespace Shinetechchina.Employee.Business.Shared
         IEnumerable<EmployeeModel> GetAllEmployee();
         bool UpdateEmployee(EmployeeModel employee);
         bool AddEmployee(EmployeeModel employee);
-        bool DeleteEmployee(EmployeeModel employee);
+        bool DeleteEmployee(string id);
     }
 }

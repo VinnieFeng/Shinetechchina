@@ -26,6 +26,7 @@ namespace Shinetechchina.Employee.Web.Models
         [StringLength(50)]
         public string Phone { get; set; }
 
+        [EmailAddress]
         [StringLength(50)]
         public string Email { get; set; }
 

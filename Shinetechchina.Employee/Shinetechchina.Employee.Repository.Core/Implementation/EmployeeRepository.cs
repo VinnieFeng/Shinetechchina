@@ -18,11 +18,11 @@ namespace Shinetechchina.Employee.Repository.Core
             }
         }
 
-        public int DeleteEmployee(EmployeeEntry employee)
+        public int DeleteEmployee(string employeeID)
         {
             using (EmployeeDbContext ctx = new EmployeeDbContext())
             {
-                var empployee = ctx.Employees.First(t => t.EmployeeID == employee.EmployeeID);
+                var empployee = ctx.Employees.First(t => t.EmployeeID == employeeID);
                 var category = ctx.Employees.Remove(empployee);
                 return ctx.SaveChanges();
             }

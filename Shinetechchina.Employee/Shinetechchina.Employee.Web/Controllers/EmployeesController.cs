@@ -1,0 +1,63 @@
+﻿using System.Collections.Generic;
+using System.Net.Http;
+using System.Web.Http;
+
+using Shinetechchina.Employee.Business.Shared;
+using Shinetechchina.Employee.Core;
+using Shinetechchina.Employee.Web.Models;
+
+namespace Shinetechchina.Employee.Web.Controllers
+{
+    [Authorize]
+    public class EmployeesController : ApiController
+    {
+        public IServiceProvider Context { get; set; }
+
+        public EmployeesController()
+        {
+            Context = ApplicationContext.Current;
+
+        }
+        // GET: api/Employees
+        public IEnumerable<EmployeeModel> Get()
+        {
+            var empMgr = Context.GetService<IEmployeeMgr>();
+            var employeeList = empMgr.GetAllEmployee();
+            return employeeList;
+        }
+
+        // GET: api/Employees/5
+        public EmployeeModel Get(string id)
+        {
+            var empMgr = Context.GetService<IEmployeeMgr>();
+            var employee = empMgr.GetEmployee(id);
+            return employee;
+        }
+
+        // POST: api/Employees
+        [HttpPost]
+        public HttpResponseMessage Post(EmployeeViewModel emp)
+        {
+            var empMgr = Context.GetService<IEmployeeMgr>();
+            var isSuccess = empMgr.AddEmployee(emp.ToModel());
+            return Request.CreateResponse<bool>(System.Net.HttpStatusCode.Created, isSuccess);
+        }
+
+        // PUT: api/Employees/5
+        public HttpResponseMessage Put(string id, EmployeeViewModel emp)
+        {
+            var empMgr = Context.GetService<IEmployeeMgr>();
+            var isSuccess = empMgr.UpdateEmployee(emp.ToModel());
+            return Request.CreateResponse<bool>(System.Net.HttpStatusCode.OK, isSuccess);
+        }
+
+        // DELETE: api/Employees/5
+        [HttpDelete]
+        public HttpResponseMessage Delete(string id)
+        {
+            var empMgr = Context.GetService<IEmployeeMgr>();
+            var isSuccess = empMgr.DeleteEmployee(id);
+            return Request.CreateResponse<bool>(System.Net.HttpStatusCode.OK, isSuccess);
+        }
+    }
+}

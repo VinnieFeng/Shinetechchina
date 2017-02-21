@@ -26,10 +26,9 @@ namespace Shinetechchina.Employee.Business.Core
             return insertRowsCount == 1;
         }
 
-        public bool DeleteEmployee(EmployeeModel employee)
+        public bool DeleteEmployee(string employeeID)
         {
-            var emp = employee.ToEntry();
-            int effectRows = _employeeRepository.DeleteEmployee(emp);
+            int effectRows = _employeeRepository.DeleteEmployee(employeeID);
             return effectRows > 0;
         }
 

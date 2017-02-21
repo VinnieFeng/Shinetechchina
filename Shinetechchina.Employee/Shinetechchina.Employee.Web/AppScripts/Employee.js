@@ -5,7 +5,7 @@
         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '', IsAdd: false };
 
         $scope.loadEmployeeList = function loadEmployeeList() {
-            $http.get("/employee/GetAll").then(function (response) {
+            $http.get("/api/Employees").then(function (response) {
                 $scope.EmployeeList = response.data;
             }, function (e) {
                 //error method
@@ -13,30 +13,40 @@
         }
 
         $scope.addEmployee = function () {
-            var url = "";
             if ($scope.Employee.IsAdd) {
-                url = "/employee/Add"
-            } else {
-                url = "/employee/Update"
-            }
-            $http.post(url, $scope.Employee).then(function (response) {
-                if (response.data) {
-                    $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
-                    $scope.loadEmployeeList();
-                    $scope.closeAddForm();
-                } else {
+              
+                $http.post("/api/Employees", $scope.Employee).then(function (response) {
+                    if (response.data) {
+                        $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
+                        $scope.loadEmployeeList();
+                        $scope.closeAddForm();
+                    } else {
+                        //save fail 
+                    }
+                }, function (e) {
                     //save fail 
-                }
-            }, function (e) {
-                //save fail 
-            });
+                });
+            } else {
+                $http.put("/api/Employees/" + $scope.Employee.EmployeeID, $scope.Employee).then(function (response) {
+                    if (response.data) {
+                        $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
+                        $scope.loadEmployeeList();
+                        $scope.closeAddForm();
+                    } else {
+                        //save fail 
+                    }
+                }, function (e) {
+                    //save fail 
+                });
+            }
+
         };
 
         // Delete one customer based on id.
         $scope.delEmployee = function (id) {
             if (confirm("Are you sure you want to delete this customer?")) {
                 // todo code for deletion
-                $http.post("/employee/delete", { empID: id }).then(function (response) {
+                $http.delete("/api/Employees/" + id).then(function (response) {
                     if (response.data) {
                         alert("Deleted successfully.");
                         // Refresh list

@@ -12,11 +12,14 @@ namespace Shinetechchina.Employee.Web.Controllers
     [Authorize]
     public class EmployeeController : BaseController
     {
+        [HandleError]
         // GET: Employee
         public ActionResult Index()
         {
             return View();
         }
+
+        [JsonException]
         [HttpGet]
         public JsonResult GetAll()
         {
@@ -24,6 +27,8 @@ namespace Shinetechchina.Employee.Web.Controllers
             var employeeList = empMgr.GetAllEmployee();
             return Json(employeeList, JsonRequestBehavior.AllowGet);
         }
+
+        [JsonException]
         [HttpPost]
         public JsonResult Add(EmployeeViewModel emp)
         {
@@ -31,14 +36,18 @@ namespace Shinetechchina.Employee.Web.Controllers
             var employee = empMgr.AddEmployee(emp.ToModel());
             return Json(employee, JsonRequestBehavior.AllowGet);
         }
+
+        [JsonException]
         [HttpPost]
-        public JsonResult Delete(string  empID)
+        public JsonResult Delete(string empID)
         {
             EmployeeViewModel empModel = new EmployeeViewModel { EmployeeID = empID };
             var empMgr = Context.GetService<IEmployeeMgr>();
-            var employee = empMgr.DeleteEmployee(new EmployeeModel {  EmployeeID= empID });
+            var employee = empMgr.DeleteEmployee(empID);
             return Json(employee, JsonRequestBehavior.AllowGet);
         }
+
+        [JsonException]
         [HttpPost]
         public JsonResult Update(EmployeeViewModel emp)
         {
