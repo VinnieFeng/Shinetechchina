@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Shinetechchina.Employee.Repository.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class EmployeeTest
     {
         [TestMethod]
         public void TestMethod1()
