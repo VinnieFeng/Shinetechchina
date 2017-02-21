@@ -9,9 +9,9 @@ namespace Shinetechchina.Employee.Repository.Core
     {
 
 
-        public override Dictionary<Type, Type> GetRegister()
+        public override Dictionary<Type, Object> GetRegister()
         {
-            return new Dictionary<Type, Type>
+            return new Dictionary<Type, Object>
             {
                 [typeof(IEmployeeRepository)] = typeof(EmployeeRepository)
             };

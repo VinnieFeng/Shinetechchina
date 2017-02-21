@@ -25,9 +25,9 @@ namespace Shinetechchina.Employee.Business.Core
         {
             ctx = repositoryContext as RepositoryCoreContext;
         }
-        public override Dictionary<Type, Type> GetRegister()
+        public override Dictionary<Type, Object> GetRegister()
         {
-            return new Dictionary<Type, Type>
+            return new Dictionary<Type, Object>
             {
                 [typeof(IEmployeeMgr)] = typeof(EmployeeMgr),
                 [typeof(IEmployeeRepository)] = typeof(EmployeeRepository)

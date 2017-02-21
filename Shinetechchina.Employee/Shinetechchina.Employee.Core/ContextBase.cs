@@ -20,7 +20,7 @@ namespace Shinetechchina.Employee.Core
     public abstract class ContextBase : IServiceProvider//, IDisposable
     {
         private DependencyResolver provider;
-       
+
         protected ContextBase()
         {
             //InitializeWindsor();
@@ -29,7 +29,7 @@ namespace Shinetechchina.Employee.Core
 
         //  public abstract void Initialize();
 
-        public abstract Dictionary<Type, Type> GetRegister();
+        public abstract Dictionary<Type, Object> GetRegister();
 
 
         public I GetService<I>()
@@ -42,17 +42,17 @@ namespace Shinetechchina.Employee.Core
 
 
             WindsorContainer container = new WindsorContainer();
-            Dictionary<Type, Type> register = GetRegister();
+            Dictionary<Type, Object> register = GetRegister();
             IWindsorInstaller installer = new BusinessInstaller(register);
             container.Install(installer);
 
             provider = new DependencyResolver(container.Kernel);
-            
+
         }
         private class BusinessInstaller : IWindsorInstaller
         {
-            Dictionary<Type, Type> register = null;
-            public BusinessInstaller(Dictionary<Type, Type> reg)
+            Dictionary<Type, Object> register = null;
+            public BusinessInstaller(Dictionary<Type, Object> reg)
             {
                 register = reg;
             }
@@ -60,7 +60,15 @@ namespace Shinetechchina.Employee.Core
             {
                 foreach (var item in register)
                 {
-                    container.Register(Component.For(item.Key).ImplementedBy(item.Value));
+                    if (item.Value is Type)
+                    {
+                        container.Register(Component.For(item.Key).ImplementedBy(item.Value as Type));
+                    }
+                    else
+                    {
+                        container.Register(Component.For(item.Key).Instance(item.Value));
+                    }
+
                 }
 
             }
