@@ -9,6 +9,7 @@ using Shinetechchina.Employee.Web.Models;
 
 namespace Shinetechchina.Employee.Web.Controllers
 {
+    [Authorize]
     public class EmployeeController : BaseController
     {
         // GET: Employee

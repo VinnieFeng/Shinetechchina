@@ -1,11 +1,9 @@
-﻿@model Shinetechchina.Employee.Web.Models.RegisterViewModel
-@{
+﻿@{
     ViewBag.Title = "Employee";
 }
 
 <h2>@ViewBag.Title.</h2>
 <hr />
-
 <div ng-app="employeeApp" ng-controller="employeeCtrl">
     <div class="form-group">
         <button class="btn btn-success" ng-click="openAddForm()">
@@ -25,17 +23,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="c in EmployeeList">
-                    <td ng-class-odd="'odd'">{{ c.EmployeeID }}</td>
-                    <td ng-class-odd="'odd'">{{ c.FirstName }}</td>
-                    <td ng-class-odd="'odd'">{{ c.LastName }}</td>
-                    <td ng-class-odd="'odd'">{{ c.Phone }}</td>
-                    <td ng-class-odd="'odd'">{{ c.Email }}</td>
+                <tr ng-repeat="e in EmployeeList">
+                    <td ng-class-odd="'odd'">{{ e.EmployeeID }}</td>
+                    <td ng-class-odd="'odd'">{{ e.FirstName }}</td>
+                    <td ng-class-odd="'odd'">{{ e.LastName }}</td>
+                    <td ng-class-odd="'odd'">{{ e.Phone }}</td>
+                    <td ng-class-odd="'odd'">{{ e.Email }}</td>
                     <td ng-class-odd="'odd'">
-                        <button class="btn" ng-click="editCustomer(c)">
+                        <button class="btn" ng-click="openEditForm(e)">
                             <span class="glyphicon glyphicon-pencil" style="color:blue"></span>&nbsp;&nbsp;Edit
                         </button>
-                        <button class="btn" ng-click="delCustomer(c.EmployeeID)">
+                        <button class="btn" ng-click="delEmployee(e.EmployeeID)">
                             <span class="glyphicon glyphicon-remove" style="color:red"></span>&nbsp;&nbsp;Delete
                         </button>
                     </td>
