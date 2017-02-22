@@ -9,10 +9,22 @@ namespace Shinetechchina.Employee.Web.Models
 {
     public class EmployeeViewModel
     {
+        public EmployeeViewModel()
+        {
+        }
+
+        public EmployeeViewModel(EmployeeModel model)
+        {
+            Email = model.Email;
+            EmployeeID = model.EmployeeID;
+            FirstName = model.FirstName;
+            Id = model.Id;
+            LastName = model.LastName;
+            Phone = model.Phone;
+        }
+
         public Guid Id { get; set; }
 
-        [Required]
-        [StringLength(20)]
         public string EmployeeID { get; set; }
 
         [Required]

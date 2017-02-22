@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
-
+using System.Web.Http.ModelBinding;
 using Shinetechchina.Employee.Business.Shared;
 using Shinetechchina.Employee.Core;
 using Shinetechchina.Employee.Web.Models;
@@ -16,22 +17,22 @@ namespace Shinetechchina.Employee.Web.Controllers
         public EmployeesController()
         {
             Context = ApplicationContext.Current;
-
         }
         // GET: api/Employees
-        public IEnumerable<EmployeeModel> Get()
+        public IEnumerable<EmployeeViewModel> Get()
         {
             var empMgr = Context.GetService<IEmployeeMgr>();
             var employeeList = empMgr.GetAllEmployee();
-            return employeeList;
+            var employeeViewList = employeeList.Select(t => new EmployeeViewModel(t));
+            return employeeViewList;
         }
 
         // GET: api/Employees/5
-        public EmployeeModel Get(string id)
+        public EmployeeViewModel Get(string id)
         {
             var empMgr = Context.GetService<IEmployeeMgr>();
             var employee = empMgr.GetEmployee(id);
-            return employee;
+            return new EmployeeViewModel(employee);
         }
 
         // POST: api/Employees

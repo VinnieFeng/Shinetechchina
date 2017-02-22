@@ -25,7 +25,8 @@ namespace Shinetechchina.Employee.Web.Controllers
         {
             var empMgr = Context.GetService<IEmployeeMgr>();
             var employeeList = empMgr.GetAllEmployee();
-            return Json(employeeList, JsonRequestBehavior.AllowGet);
+            var employeeViewList = employeeList.Select(t => new EmployeeViewModel(t));
+            return Json(employeeViewList, JsonRequestBehavior.AllowGet);
         }
 
         [JsonException]
@@ -41,7 +42,6 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpPost]
         public JsonResult Delete(string empID)
         {
-            EmployeeViewModel empModel = new EmployeeViewModel { EmployeeID = empID };
             var empMgr = Context.GetService<IEmployeeMgr>();
             var employee = empMgr.DeleteEmployee(empID);
             return Json(employee, JsonRequestBehavior.AllowGet);

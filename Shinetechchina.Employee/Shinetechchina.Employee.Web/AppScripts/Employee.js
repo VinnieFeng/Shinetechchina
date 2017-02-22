@@ -1,7 +1,7 @@
 ﻿(function (Employee, undefined) {
     var module = angular.module('employeeApp', []);
     module.controller('employeeCtrl', function ($scope, $http) {
-        $scope.EmployeeApiUri = "/api/Employees";
+        $scope.EmployeeApiUri = "/api/Employees/";
         $scope.EmployeeList = [];
         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '', IsAdd: false };
 
@@ -9,7 +9,7 @@
             $http.get($scope.EmployeeApiUri).then(function (response) {
                 $scope.EmployeeList = response.data;
             }, function (e) {
-                //error method
+                alert(e.data.Message);
             });
         }
 
@@ -24,7 +24,7 @@
                         //save fail 
                     }
                 }, function (e) {
-                    //save fail 
+                    alert(e.data.Message);
                 });
             } else {
                 $http.put($scope.EmployeeApiUri + $scope.Employee.EmployeeID, $scope.Employee).then(function (response) {
@@ -36,7 +36,7 @@
                         //save fail 
                     }
                 }, function (e) {
-                    //save fail 
+                    alert(e.data.Message);
                 });
             }
         };
@@ -54,7 +54,7 @@
                         //save fail 
                     }
                 }, function (e) {
-                    //save fail 
+                    alert(e.data.Message);
                 });
             }
         };
