@@ -1,21 +1,13 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Shinetechchina.Employee.Web.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
-using System.Web;
+using System.Net.Http;
 using System.Web.Http;
 using Shinetechchina.Employee.Business.Mock;
-using System.Web.Mvc;
-using System.Web.Routing;
 using Shinetechchina.Employee.Business.Shared;
 using Shinetechchina.Employee.Web.Models;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.ComponentModel.DataAnnotations;
+using Moq;
 
 namespace Shinetechchina.Employee.Web.Controllers.Tests
 {
@@ -80,11 +72,11 @@ namespace Shinetechchina.Employee.Web.Controllers.Tests
         }
 
         [TestMethod()]
-        public void PostTest_When_InValid()
+        public void PutTest()
         {
             BusinessMockContext ctx = new BusinessMockContext();
-            EmployeeViewModel mockData = new EmployeeViewModel { Email = "Email", EmployeeID = "EmployeeID", FirstName = "FirstName1", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
-            ctx.mock.Setup(m => m.AddEmployee(It.IsAny<EmployeeModel>())).Returns(true);
+            EmployeeViewModel mockData = new EmployeeViewModel { Email = "Email@email.com", EmployeeID = "EmployeeID", FirstName = "FirstName", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
+            ctx.mock.Setup(m => m.UpdateEmployee(It.IsAny<EmployeeModel>())).Returns(true);
             ctx.Initialize();
 
             var controller = new EmployeesController();
@@ -96,35 +88,27 @@ namespace Shinetechchina.Employee.Web.Controllers.Tests
             };
             controller.Context = ctx;
             controller.Validate(mockData);
-            HttpResponseMessage result = controller.Post(mockData);
+            HttpResponseMessage result = controller.Put(mockData.EmployeeID, mockData);
             Assert.IsTrue(result.Content.ReadAsStringAsync().Result.ToUpper() == "TRUE");
-        }
-
-        [TestMethod()]
-        public void PutTest()
-        {
-            Assert.Fail();
         }
 
         [TestMethod()]
         public void DeleteTest()
         {
-            Assert.Fail();
+            BusinessMockContext ctx = new BusinessMockContext();
+            ctx.mock.Setup(m => m.DeleteEmployee(It.IsAny<string>())).Returns(true);
+            ctx.Initialize();
+
+            var controller = new EmployeesController();
+            controller.Configuration = new HttpConfiguration();
+            controller.Request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Post,
+                RequestUri = new Uri("http://localhost/api/employees/")
+            };
+            controller.Context = ctx;
+            HttpResponseMessage result = controller.Delete("id");
+            Assert.IsTrue(result.Content.ReadAsStringAsync().Result.ToUpper() == "TRUE");
         }
-
-
-
-        //      private Mock<ApiController> MockHttpContext()
-        //{
-        //    var request = new Mock<ApiController>();
-        //    request.SetupGet(x => x.Headers).Returns(
-        //     new HttpResponseHeaders());
-
-
-        //   );
-
-
-        //    return context;
-        //}
     }
 }
