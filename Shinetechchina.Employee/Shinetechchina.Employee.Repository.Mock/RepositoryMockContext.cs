@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Configuration;
 using Moq;
 using Shinetechchina.Employee.Core;
+using Shinetechchina.Employee.Repository.Mock;
 using Shinetechchina.Employee.Repository.Shared;
+using Shinetechchina.Employee.Repository.Test;
 
 namespace Shinetechchina.Employee.Repository.Mock
 {
     public class RepositoryMockContext : ContextBase
     {
-        public Mock<IEmployeeRepository> mock = new Mock<IEmployeeRepository>();
+        Mock<IDbContext> mock = new Mock<IDbContext>();
         public RepositoryMockContext()
         {
             SetUpMock();
@@ -27,19 +31,13 @@ namespace Shinetechchina.Employee.Repository.Mock
 
         private void SetUpMock()
         {
-            mock.Setup(m => m.GetAllEmployee()).Returns(
-              (new List<EmployeeEntry>() {
-                    new EmployeeEntry { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                    new EmployeeEntry { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                    new EmployeeEntry { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-               }).AsEnumerable()
-               );
-            mock.Setup(m => m.GetEmployee(It.IsAny<string>())).Returns(
-                    new EmployeeEntry { Email = "Email", EmployeeID = "EmployeeID", FirstName = "FirstName1", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" }
-              );
-            mock.Setup(m => m.AddEmployee(It.IsAny<EmployeeEntry>())).Returns(1);
-            mock.Setup(m => m.DeleteEmployee(It.IsAny<string>())).Returns(1);
-            mock.Setup(m => m.UpdateEmployee(It.IsAny<EmployeeEntry>())).Returns(1);
+            mock.Setup(x => x.Set<EmployeeEntity>()).Returns(
+                new FakeDbSet<EmployeeEntity>
+                {
+                    new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                    new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                    new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                });
         }
     }
 }

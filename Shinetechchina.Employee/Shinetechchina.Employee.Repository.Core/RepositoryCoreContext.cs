@@ -13,7 +13,8 @@ namespace Shinetechchina.Employee.Repository.Core
         {
             return new Dictionary<Type, Object>
             {
-                [typeof(IEmployeeRepository)] = typeof(EmployeeRepository)
+                [typeof(IEmployeeRepository)] = typeof(EmployeeRepository),
+                [typeof(EmployeeDbContext)] = typeof(EmployeeDbContext),
             };
         }
 

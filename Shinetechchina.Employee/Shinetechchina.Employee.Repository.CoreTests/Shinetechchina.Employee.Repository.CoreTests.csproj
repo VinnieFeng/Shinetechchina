@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9D258459-1E81-4C87-8CF9-ADE3616CA8D4}</ProjectGuid>
+    <ProjectGuid>{9C2B0379-CF00-4BA4-8678-130BC31FCC5E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Shinetechchina.Employee.Business.Test</RootNamespace>
-    <AssemblyName>Shinetechchina.Employee.Business.Test</AssemblyName>
+    <RootNamespace>Shinetechchina.Employee.Repository.CoreTests</RootNamespace>
+    <AssemblyName>Shinetechchina.Employee.Repository.CoreTests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,22 +55,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Implementation\EmployeeMgrTests.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="Implementation\EmployeeRepositoryTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shinetechchina.Employee.Business.Core\Shinetechchina.Employee.Business.Core.csproj">
-      <Project>{266F2ABC-AF75-4585-89A7-A976A04EDCB4}</Project>
-      <Name>Shinetechchina.Employee.Business.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shinetechchina.Employee.Business.Shared\Shinetechchina.Employee.Business.Shared.csproj">
-      <Project>{EDE87ED8-2FE7-41E2-82AB-3F1A2D59616D}</Project>
-      <Name>Shinetechchina.Employee.Business.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shinetechchina.Employee.Core\Shinetechchina.Employee.Core.csproj">
-      <Project>{8d085671-1d7f-465d-af4f-275068a2a86f}</Project>
-      <Name>Shinetechchina.Employee.Core</Name>
+    <ProjectReference Include="..\Shinetechchina.Employee.Repository.Core\Shinetechchina.Employee.Repository.Core.csproj">
+      <Project>{8AF82A8A-12B2-4B17-A85B-7DD3690289AB}</Project>
+      <Name>Shinetechchina.Employee.Repository.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shinetechchina.Employee.Repository.Mock\Shinetechchina.Employee.Repository.Mock.csproj">
       <Project>{34255569-E481-4212-8C95-CAB69893311E}</Project>

@@ -102,6 +102,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Shinetechchina.Employee.Business.Core\Shinetechchina.Employee.Business.Core.csproj">
+      <Project>{266F2ABC-AF75-4585-89A7-A976A04EDCB4}</Project>
+      <Name>Shinetechchina.Employee.Business.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shinetechchina.Employee.Business.Mock\Shinetechchina.Employee.Business.Mock.csproj">
       <Project>{2D5DF7AE-2FF4-4282-80FC-A51EDD59E7DD}</Project>
       <Name>Shinetechchina.Employee.Business.Mock</Name>

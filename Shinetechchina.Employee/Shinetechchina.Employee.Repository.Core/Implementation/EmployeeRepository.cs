@@ -7,59 +7,48 @@ namespace Shinetechchina.Employee.Repository.Core
 {
     public class EmployeeRepository : IEmployeeRepository
     {
+        private EmployeeDbContext _context;
+        public EmployeeRepository(EmployeeDbContext ctx)
+        {
+            _context = ctx;
+        }
         public int AddEmployee(EmployeeEntry employee)
         {
-            using (EmployeeDbContext ctx = new EmployeeDbContext())
-            {
-                EmployeeEntity employeeEntity = employee.ToEntity();
-                employeeEntity = ctx.Employees.Add(employeeEntity);
-                int affectRows = ctx.SaveChanges();
-                return affectRows;
-            }
+            EmployeeEntity employeeEntity = employee.ToEntity();
+            employeeEntity = _context.Employees.Add(employeeEntity);
+            int affectRows = _context.SaveChanges();
+            return affectRows;
         }
 
         public int DeleteEmployee(string employeeID)
         {
-            using (EmployeeDbContext ctx = new EmployeeDbContext())
-            {
-                var empployee = ctx.Employees.First(t => t.EmployeeID == employeeID);
-                var category = ctx.Employees.Remove(empployee);
-                return ctx.SaveChanges();
-            }
+            var empployee = _context.Employees.First(t => t.EmployeeID == employeeID);
+            var category = _context.Employees.Remove(empployee);
+            return _context.SaveChanges();
         }
 
         public IEnumerable<EmployeeEntry> GetAllEmployee()
         {
-            using (EmployeeDbContext ctx = new EmployeeDbContext())
-            {
-                var employees = ctx.Employees.ToList().Select(t => t.ToEntry());
-                return employees;
-            }
-
+            var employees = _context.Employees.ToList().Select(t => t.ToEntry());
+            return employees;
         }
 
         public EmployeeEntry GetEmployee(string EmployeeID)
         {
-            using (EmployeeDbContext ctx = new EmployeeDbContext())
-            {
-                var entity = ctx.Employees.FirstOrDefault(t => t.EmployeeID == EmployeeID);
-                return entity.ToEntry();
-            }
+            var entity = _context.Employees.FirstOrDefault(t => t.EmployeeID == EmployeeID);
+            return entity.ToEntry();
         }
 
         public int UpdateEmployee(EmployeeEntry employee)
         {
-            using (EmployeeDbContext ctx = new EmployeeDbContext())
-            {
-                var entity = ctx.Employees.FirstOrDefault(t => t.EmployeeID == employee.EmployeeID);
-                entity.Email = employee.Email;
-                entity.EmployeeID = employee.EmployeeID;
-                entity.FirstName = employee.FirstName;
-                entity.LastName = employee.LastName;
-                entity.Phone = employee.Phone;
-                ctx.Entry(entity).State = EntityState.Modified;
-                return ctx.SaveChanges();
-            }
+            var entity = _context.Employees.FirstOrDefault(t => t.EmployeeID == employee.EmployeeID);
+            entity.Email = employee.Email;
+            entity.EmployeeID = employee.EmployeeID;
+            entity.FirstName = employee.FirstName;
+            entity.LastName = employee.LastName;
+            entity.Phone = employee.Phone;
+            _context.Entry(entity).State = EntityState.Modified;
+            return _context.SaveChanges();
         }
     }
 }

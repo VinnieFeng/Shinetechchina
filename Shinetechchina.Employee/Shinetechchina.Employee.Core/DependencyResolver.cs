@@ -19,7 +19,7 @@ namespace Shinetechchina.Employee.Core
 
         public object GetService(Type type)
         {
-            return kernel.HasComponent(type) ? kernel.Resolve(type) : null;
+             return kernel.HasComponent(type) ? kernel.Resolve(type) : null;
         }
             
 
