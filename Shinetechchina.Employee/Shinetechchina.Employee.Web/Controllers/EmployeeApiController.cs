@@ -20,7 +20,6 @@ namespace Shinetechchina.Employee.Web.Controllers
         // GET: api/Employees
         public IEnumerable<EmployeeViewModel> Get()
         {
-            throw new System.Exception();
             var empMgr = Context.GetService<IEmployeeMgr>();
             var employeeList = empMgr.GetAllEmployee();
             var employeeViewList = employeeList.Select(t => new EmployeeViewModel(t));
