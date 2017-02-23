@@ -114,10 +114,6 @@
       <Project>{EDE87ED8-2FE7-41E2-82AB-3F1A2D59616D}</Project>
       <Name>Shinetechchina.Employee.Business.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shinetechchina.Employee.Core\Shinetechchina.Employee.Core.csproj">
-      <Project>{8D085671-1D7F-465D-AF4F-275068A2A86F}</Project>
-      <Name>Shinetechchina.Employee.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Shinetechchina.Employee.Web\Shinetechchina.Employee.Web.csproj">
       <Project>{C97DA497-D77D-4C3C-8EDF-F82458917A4D}</Project>
       <Name>Shinetechchina.Employee.Web</Name>

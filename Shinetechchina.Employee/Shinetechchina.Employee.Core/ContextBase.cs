@@ -56,8 +56,7 @@ namespace Shinetechchina.Employee.Core
                         container.Register(Component.For(item.Key).Instance(item.Value));
                     }
                 }
-                container.AddFacility<LoggingFacility>(f => f.LogUsing(LoggerImplementation.Log4net)
-                .WithConfig(System.AppDomain.CurrentDomain.SetupInformation.ConfigurationFile));
+            
             }
         }
     }

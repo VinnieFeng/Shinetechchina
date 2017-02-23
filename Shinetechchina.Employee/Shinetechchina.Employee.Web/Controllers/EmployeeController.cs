@@ -12,6 +12,13 @@ namespace Shinetechchina.Employee.Web.Controllers
     [Authorize]
     public class EmployeeController : BaseController
     {
+        private readonly IEmployeeMgr empMgr;
+
+        public EmployeeController(IEmployeeMgr service)
+        {
+            empMgr = service;
+        }
+
         [HandleError]
         // GET: Employee
         public ActionResult Index()
@@ -23,7 +30,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpGet]
         public JsonResult GetAll()
         {
-            var empMgr = Context.GetService<IEmployeeMgr>();
+           // var empMgr = Context.GetService<IEmployeeMgr>();
             var employeeList = empMgr.GetAllEmployee();
             var employeeViewList = employeeList.Select(t => new EmployeeViewModel(t));
             return Json(employeeViewList, JsonRequestBehavior.AllowGet);
@@ -33,7 +40,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpPost]
         public JsonResult Add(EmployeeViewModel emp)
         {
-            var empMgr = Context.GetService<IEmployeeMgr>();
+           // var empMgr = Context.GetService<IEmployeeMgr>();
             var employee = empMgr.AddEmployee(emp.ToModel());
             return Json(employee, JsonRequestBehavior.AllowGet);
         }
@@ -42,7 +49,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpPost]
         public JsonResult Delete(string empID)
         {
-            var empMgr = Context.GetService<IEmployeeMgr>();
+           // var empMgr = Context.GetService<IEmployeeMgr>();
             var employee = empMgr.DeleteEmployee(empID);
             return Json(employee, JsonRequestBehavior.AllowGet);
         }
@@ -51,7 +58,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpPost]
         public JsonResult Update(EmployeeViewModel emp)
         {
-            var empMgr = Context.GetService<IEmployeeMgr>();
+           // var empMgr = Context.GetService<IEmployeeMgr>();
             var employee = empMgr.UpdateEmployee(emp.ToModel());
             return Json(employee, JsonRequestBehavior.AllowGet);
         }

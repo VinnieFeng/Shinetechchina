@@ -126,6 +126,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -195,7 +199,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationContext.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\JsonExceptionAttribute.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -213,11 +216,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Identity\AppIdentityDbContext.cs" />
+    <Compile Include="Installers\AppInstaller.cs" />
+    <Compile Include="Installers\ControllerInstaller.cs" />
+    <Compile Include="Installers\WindsorCompositionRoot.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EmployeeViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Plumbing\ControllerFactoryWireup.cs" />
+    <Compile Include="Plumbing\IoC.cs" />
+    <Compile Include="Plumbing\JsonErrorFilterAttribute.cs" />
+    <Compile Include="Plumbing\WindsorControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1090,13 +1099,13 @@
       <Project>{EDE87ED8-2FE7-41E2-82AB-3F1A2D59616D}</Project>
       <Name>Shinetechchina.Employee.Business.Shared</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shinetechchina.Employee.Core\Shinetechchina.Employee.Core.csproj">
-      <Project>{8D085671-1D7F-465D-AF4F-275068A2A86F}</Project>
-      <Name>Shinetechchina.Employee.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Shinetechchina.Employee.Repository.Core\Shinetechchina.Employee.Repository.Core.csproj">
       <Project>{8AF82A8A-12B2-4B17-A85B-7DD3690289AB}</Project>
       <Name>Shinetechchina.Employee.Repository.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shinetechchina.Employee.Repository.Shared\Shinetechchina.Employee.Repository.Shared.csproj">
+      <Project>{888AC7DB-9943-4CCF-ADB9-2B11DBDE5DEC}</Project>
+      <Name>Shinetechchina.Employee.Repository.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

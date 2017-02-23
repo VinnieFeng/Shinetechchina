@@ -3,7 +3,6 @@ using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using Shinetechchina.Employee.Business.Shared;
-using Shinetechchina.Employee.Core;
 using Shinetechchina.Employee.Web.Models;
 
 namespace Shinetechchina.Employee.Web.Controllers
@@ -11,16 +10,16 @@ namespace Shinetechchina.Employee.Web.Controllers
     [Authorize]
     public class EmployeesController : ApiController
     {
-        public IServiceProvider Context { get; set; }
+        private IEmployeeMgr empMgr;
 
-        public EmployeesController()
+        public EmployeesController(IEmployeeMgr _service)
         {
-            Context = ApplicationContext.Current;
+            empMgr = _service;
         }
         // GET: api/Employees
         public IEnumerable<EmployeeViewModel> Get()
         {
-            var empMgr = Context.GetService<IEmployeeMgr>();
+            //var empMgr = Context.GetService<IEmployeeMgr>();
             var employeeList = empMgr.GetAllEmployee();
             var employeeViewList = employeeList.Select(t => new EmployeeViewModel(t));
             return employeeViewList;
@@ -29,7 +28,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         // GET: api/Employees/5
         public EmployeeViewModel Get(string id)
         {
-            var empMgr = Context.GetService<IEmployeeMgr>();
+            // var empMgr = Context.GetService<IEmployeeMgr>();
             var employee = empMgr.GetEmployee(id);
             return new EmployeeViewModel(employee);
         }
@@ -38,7 +37,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpPost]
         public HttpResponseMessage Post(EmployeeViewModel emp)
         {
-            var empMgr = Context.GetService<IEmployeeMgr>();
+            //  var empMgr = Context.GetService<IEmployeeMgr>();
             var isSuccess = empMgr.AddEmployee(emp.ToModel());
             return Request.CreateResponse<bool>(System.Net.HttpStatusCode.Created, isSuccess);
         }
@@ -46,7 +45,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         // PUT: api/Employees/5
         public HttpResponseMessage Put(string id, EmployeeViewModel emp)
         {
-            var empMgr = Context.GetService<IEmployeeMgr>();
+            // var empMgr = Context.GetService<IEmployeeMgr>();
             var isSuccess = empMgr.UpdateEmployee(emp.ToModel());
             return Request.CreateResponse<bool>(System.Net.HttpStatusCode.OK, isSuccess);
         }
@@ -55,7 +54,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpDelete]
         public HttpResponseMessage Delete(string id)
         {
-            var empMgr = Context.GetService<IEmployeeMgr>();
+            //  var empMgr = Context.GetService<IEmployeeMgr>();
             var isSuccess = empMgr.DeleteEmployee(id);
             return Request.CreateResponse<bool>(System.Net.HttpStatusCode.OK, isSuccess);
         }

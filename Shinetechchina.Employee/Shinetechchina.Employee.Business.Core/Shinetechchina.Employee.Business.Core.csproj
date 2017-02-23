@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BusinessCoreContext.cs" />
     <Compile Include="Implementation\EmployeeMgr.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,10 +62,6 @@
     <ProjectReference Include="..\Shinetechchina.Employee.Business.Shared\Shinetechchina.Employee.Business.Shared.csproj">
       <Project>{ede87ed8-2fe7-41e2-82ab-3f1a2d59616d}</Project>
       <Name>Shinetechchina.Employee.Business.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shinetechchina.Employee.Core\Shinetechchina.Employee.Core.csproj">
-      <Project>{8D085671-1D7F-465D-AF4F-275068A2A86F}</Project>
-      <Name>Shinetechchina.Employee.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shinetechchina.Employee.Repository.Core\Shinetechchina.Employee.Repository.Core.csproj">
       <Project>{8AF82A8A-12B2-4B17-A85B-7DD3690289AB}</Project>
