@@ -47,6 +47,7 @@ namespace Shinetechchina.Employee.Repository.Core
             entity.FirstName = employee.FirstName;
             entity.LastName = employee.LastName;
             entity.Phone = employee.Phone;
+            
             _context.Entry(entity).State = EntityState.Modified;
             return _context.SaveChanges();
         }

@@ -64,29 +64,6 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
         }
 
         [TestMethod()]
-        public void UpdateEmployeeTest()
-        {
-            // Create some test data
-            var data = new List<EmployeeEntity>
-            {
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-            };
-
-            // Create a mock set and context
-            var set = new Mock<DbSet<EmployeeEntity>>().SetupData(data);
-            var context = new Mock<EmployeeDbContext>();
-            context.Setup(c => c.Employees).Returns(set.Object);
-
-            EmployeeRepository empRepo = new EmployeeRepository(context.Object);
-            var mockData = new EmployeeEntry { Email = "Email", EmployeeID = "EmployeeID", FirstName = "FirstName1", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
-            var effectRows = empRepo.UpdateEmployee(mockData);
-            // Check the results
-            context.Verify(m => m.SaveChanges(), Times.Once());
-        }
-
-        [TestMethod()]
         public void GetAllEmployeeTest()
         {
             // Create some test data

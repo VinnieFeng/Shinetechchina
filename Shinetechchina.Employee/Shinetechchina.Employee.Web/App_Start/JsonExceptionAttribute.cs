@@ -21,8 +21,4 @@ namespace Shinetechchina.Employee.Web
             }
         }
     }
-
-
-
-   
 }

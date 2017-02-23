@@ -11,6 +11,8 @@ namespace Shinetechchina.Employee.Web
         {
             // Web API configuration and services
             config.Filters.Add(new ValidateModelAttribute());
+            config.Filters.Add(new CustomerExceptionFilterAttribute());
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

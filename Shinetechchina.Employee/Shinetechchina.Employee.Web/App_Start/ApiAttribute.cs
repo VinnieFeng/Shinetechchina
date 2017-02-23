@@ -19,4 +19,12 @@ namespace Shinetechchina.Employee.Web
             }
         }
     }
+
+    public class CustomerExceptionFilterAttribute : ExceptionFilterAttribute
+    {
+        public override void OnException(HttpActionExecutedContext context)
+        {
+            context.Request.CreateErrorResponse(HttpStatusCode.NotFound, context.Exception);
+        }
+    }
 }

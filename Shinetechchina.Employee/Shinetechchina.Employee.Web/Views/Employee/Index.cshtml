@@ -43,10 +43,9 @@
             </tfoot>
         </table>
     </div>
-
     <div class="modal fade" id="formModal" style="height:800px;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content" ng-form name="empForm">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h4 class="modal-title" id="myModalLabel">Employee Information</h4>
@@ -56,13 +55,19 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">First Name</label>
                         <div class="col-md-8">
-                            <input class="form-control" ng-model="Employee.FirstName" />
+                            <input class="form-control" ng-model="Employee.FirstName" name="FirstName" required style="float:left;"/>
+                            <span style="color:red;padding-left: 5px;" ng-show="empForm.FirstName.$dirty && empForm.FirstName.$invalid">
+                                <span ng-show="empForm.FirstName.$invalid" class="">*</span>
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Last Name</label>
                         <div class="col-md-8">
-                            <input class="form-control" ng-model="Employee.LastName" />
+                            <input class="form-control" ng-model="Employee.LastName" name="LastName" required style="float:left;" />
+                            <span style="color:red;padding-left: 5px;" ng-show="empForm.LastName.$dirty && empForm.LastName.$invalid">
+                                <span ng-show="empForm.LastName.$error.required">*</span>
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -74,18 +79,21 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Email</label>
                         <div class="col-md-8">
-                            <input class="form-control" ng-model="Employee.Email" />
+                            <input class="form-control" ng-model="Employee.Email" type="email" style="float:left;" name="Email"/>
+                            <span style="color:red;padding-left: 5px;" ng-show="empForm.Email.$dirty && empForm.Email.$invalid">
+                                <span ng-show="empForm.Email.$invalid">Email</span>
+                            </span>
                         </div>
                     </div>
+                    <h1>{{empForm.Employee.$valid}}</h1>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" ng-click="addEmployee()">提交更改</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="addEmployee()" ng-disabled="empForm.$invalid">Submit</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div>
-
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
