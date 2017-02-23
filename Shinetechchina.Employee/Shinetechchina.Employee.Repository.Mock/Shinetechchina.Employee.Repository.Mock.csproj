@@ -42,6 +42,14 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework.Testing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFrameworkTesting.1.2.0\lib\net45\EntityFramework.Testing.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Testing.Moq, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFrameworkTesting.Moq.1.2.0\lib\net45\EntityFramework.Testing.Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Moq, Version=4.7.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\packages\Moq.4.7.0\lib\net45\Moq.dll</HintPath>
       <Private>True</Private>
@@ -58,8 +66,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDbContext.cs" />
-    <Compile Include="FakeDbSet.cs" />
     <Compile Include="RepositoryMockContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,6 +73,10 @@
     <ProjectReference Include="..\Shinetechchina.Employee.Core\Shinetechchina.Employee.Core.csproj">
       <Project>{8D085671-1D7F-465D-AF4F-275068A2A86F}</Project>
       <Name>Shinetechchina.Employee.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shinetechchina.Employee.Repository.Core\Shinetechchina.Employee.Repository.Core.csproj">
+      <Project>{8AF82A8A-12B2-4B17-A85B-7DD3690289AB}</Project>
+      <Name>Shinetechchina.Employee.Repository.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Shinetechchina.Employee.Repository.Shared\Shinetechchina.Employee.Repository.Shared.csproj">
       <Project>{888AC7DB-9943-4CCF-ADB9-2B11DBDE5DEC}</Project>

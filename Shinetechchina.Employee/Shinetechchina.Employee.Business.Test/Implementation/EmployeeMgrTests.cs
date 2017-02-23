@@ -1,16 +1,10 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Shinetechchina.Employee.Business.Core;
+﻿using Moq;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Shinetechchina.Employee.Core;
-using Shinetechchina.Employee.Repository.Mock;
+using System.Collections.Generic;
 using Shinetechchina.Employee.Repository.Shared;
 using Shinetechchina.Employee.Business.Shared;
-using Moq;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Shinetechchina.Employee.Business.Core.Tests
 {
     [TestClass()]

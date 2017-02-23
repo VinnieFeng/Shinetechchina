@@ -1,21 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Configuration;
 using Moq;
 using Shinetechchina.Employee.Core;
-using Shinetechchina.Employee.Repository.Mock;
+using Shinetechchina.Employee.Repository.Core;
 using Shinetechchina.Employee.Repository.Shared;
-using Shinetechchina.Employee.Repository.Test;
 
 namespace Shinetechchina.Employee.Repository.Mock
 {
     public class RepositoryMockContext : ContextBase
     {
-        Mock<IDbContext> mock = new Mock<IDbContext>();
+   
+
+        // Create a mock set and context
+        Mock<DbSet<EmployeeEntity>> set = new Mock<DbSet<EmployeeEntity>>();
+        Mock<EmployeeDbContext> context = new Mock<EmployeeDbContext>();
         public RepositoryMockContext()
         {
             SetUpMock();
@@ -25,19 +24,21 @@ namespace Shinetechchina.Employee.Repository.Mock
         {
             return new Dictionary<Type, Object>
             {
-                [typeof(IEmployeeRepository)] = mock.Object,
+                [typeof(IEmployeeRepository)] = context.Object,
             };
         }
 
         private void SetUpMock()
         {
-            mock.Setup(x => x.Set<EmployeeEntity>()).Returns(
-                new FakeDbSet<EmployeeEntity>
-                {
-                    new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                    new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                    new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                });
+
+            List<EmployeeEntity> data = new List<EmployeeEntity>
+            {
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+            };
+            set.SetupData(data);
+            context.Setup(c => c.Employees).Returns(set.Object);
         }
     }
 }

@@ -2,10 +2,6 @@
 using Shinetechchina.Employee.Core;
 using Shinetechchina.Employee.Repository.Core;
 using Shinetechchina.Employee.Web.Properties;
-
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using Shinetechchina.Employee.Business.Mock;
 
 namespace Shinetechchina.Employee.Web

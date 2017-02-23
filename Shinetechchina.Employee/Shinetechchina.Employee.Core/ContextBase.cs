@@ -1,19 +1,15 @@
-﻿using Castle.MicroKernel.Registration;
-using Castle.Windsor;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
 using Castle.MicroKernel.SubSystems.Configuration;
+using Castle.Facilities.Logging;
 
 namespace Shinetechchina.Employee.Core
 {
     public interface IServiceProvider
     {
         void Initialize();
-        //  bool IsRegistered(Type contract);
-        // object GetService(Type contract);
         I GetService<I>();
     }
 
@@ -23,14 +19,9 @@ namespace Shinetechchina.Employee.Core
 
         protected ContextBase()
         {
-            //InitializeWindsor();
         }
 
-
-        //  public abstract void Initialize();
-
         public abstract Dictionary<Type, Object> GetRegister();
-
 
         public I GetService<I>()
         {
@@ -39,15 +30,11 @@ namespace Shinetechchina.Employee.Core
 
         public void Initialize()
         {
-
-
             WindsorContainer container = new WindsorContainer();
             Dictionary<Type, Object> register = GetRegister();
             IWindsorInstaller installer = new BusinessInstaller(register);
             container.Install(installer);
-
             provider = new DependencyResolver(container.Kernel);
-
         }
         private class BusinessInstaller : IWindsorInstaller
         {
@@ -68,12 +55,10 @@ namespace Shinetechchina.Employee.Core
                     {
                         container.Register(Component.For(item.Key).Instance(item.Value));
                     }
-
                 }
-
+                container.AddFacility<LoggingFacility>(f => f.LogUsing(LoggerImplementation.Log4net)
+                .WithConfig(System.AppDomain.CurrentDomain.SetupInformation.ConfigurationFile));
             }
-
-
         }
     }
 }

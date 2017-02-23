@@ -9,9 +9,7 @@ namespace Shinetechchina.Employee.Repository.Core
             : base("name=EmployeeContext")
         {
         }
-
         public virtual DbSet<EmployeeEntity> Employees { get; set; }
-
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<EmployeeEntity>().ToTable("Employee")

@@ -7,8 +7,6 @@ namespace Shinetechchina.Employee.Repository.Core
 {
     public class RepositoryCoreContext : ContextBase
     {
-
-
         public override Dictionary<Type, Object> GetRegister()
         {
             return new Dictionary<Type, Object>
@@ -17,7 +15,5 @@ namespace Shinetechchina.Employee.Repository.Core
                 [typeof(EmployeeDbContext)] = typeof(EmployeeDbContext),
             };
         }
-
-
     }
 }

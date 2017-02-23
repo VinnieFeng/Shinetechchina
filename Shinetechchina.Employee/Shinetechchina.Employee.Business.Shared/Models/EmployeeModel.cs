@@ -42,7 +42,5 @@ namespace Shinetechchina.Employee.Business.Shared
             };
             return entity;
         }
-
     }
-
 }

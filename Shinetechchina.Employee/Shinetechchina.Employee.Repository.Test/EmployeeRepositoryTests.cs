@@ -1,15 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Shinetechchina.Employee.Repository.Core;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Moq;
-using Shinetechchina.Employee.Repository.Mock;
-using Shinetechchina.Employee.Repository.Shared;
-using Shinetechchina.Employee.Repository.Test;
 using System.Data.Entity;
+using System.Collections.Generic;
+using Moq;
+using Shinetechchina.Employee.Repository.Shared;
+
 
 namespace Shinetechchina.Employee.Repository.Core.Tests
 {

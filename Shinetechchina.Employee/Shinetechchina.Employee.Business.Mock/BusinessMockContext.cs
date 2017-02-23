@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Moq;
-using Shinetechchina.Employee.Business.Shared;
 using Shinetechchina.Employee.Core;
+using Shinetechchina.Employee.Business.Shared;
 using Shinetechchina.Employee.Repository.Core;
 using Shinetechchina.Employee.Repository.Shared;
 
@@ -18,7 +16,6 @@ namespace Shinetechchina.Employee.Business.Mock
         {
             SetUpMock();
         }
-
         public override Dictionary<Type, Object> GetRegister()
         {
             return new Dictionary<Type, Object>
@@ -27,7 +24,6 @@ namespace Shinetechchina.Employee.Business.Mock
                 [typeof(IEmployeeRepository)] = typeof(EmployeeRepository) as Object
             };
         }
-
         private void SetUpMock()
         {
             mock.Setup(m => m.GetAllEmployee()).Returns(

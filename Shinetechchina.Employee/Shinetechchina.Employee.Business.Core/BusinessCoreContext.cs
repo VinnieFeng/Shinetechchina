@@ -1,8 +1,8 @@
-﻿using Shinetechchina.Employee.Business.Shared;
+﻿using System;
+using System.Collections.Generic;
+using Shinetechchina.Employee.Business.Shared;
 using Shinetechchina.Employee.Core;
 using Shinetechchina.Employee.Repository.Core;
-using System;
-using System.Collections.Generic;
 using Shinetechchina.Employee.Repository.Shared;
 
 namespace Shinetechchina.Employee.Business.Core

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Shinetechchina.Employee.Business.Shared;
 using Shinetechchina.Employee.Core;
 using Shinetechchina.Employee.Web.Models;
@@ -21,6 +20,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         // GET: api/Employees
         public IEnumerable<EmployeeViewModel> Get()
         {
+            throw new System.Exception();
             var empMgr = Context.GetService<IEmployeeMgr>();
             var employeeList = empMgr.GetAllEmployee();
             var employeeViewList = employeeList.Select(t => new EmployeeViewModel(t));
