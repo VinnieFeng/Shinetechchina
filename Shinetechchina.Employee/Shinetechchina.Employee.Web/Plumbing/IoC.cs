@@ -3,9 +3,15 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
+using Shinetechchina.Employee.Business.Core;
+using Shinetechchina.Employee.Business.Mock;
+using Shinetechchina.Employee.Repository.Core;
+using Shinetechchina.Employee.Repository.Mock;
 using Shinetechchina.Employee.Web.Installers;
 using Shinetechchina.Employee.Web.Plumbing;
+using Shinetechchina.Employee.Web.Properties;
 using System;
+using System.Collections.Generic;
 using System.Web.Http;
 using System.Web.Http.Dispatcher;
 using System.Web.Mvc;
@@ -45,7 +51,29 @@ namespace Shinetechchina.Employee.Web.Plumbing
                 );
 
             // Search for an use all installers in this application.
-            Container.Install(FromAssembly.InThisApplication());
+            //Container.Install(FromAssembly.InThisApplication());
+            List<IWindsorInstaller> installers =new List<IWindsorInstaller>() { };
+            installers.Add(new AppInstaller());
+            // installers.Add(new DependencyConventions());
+            if (Settings.Default.IsBusinessMock)
+            {
+                installers.Add(new BusinessMockInstaller());
+            }
+            else
+            {
+                installers.Add(new BusinessCoreInstaller());
+            }
+            if (Settings.Default.IsRepositoryMock)
+            {
+                installers.Add(new RepositoryMockInstaller());
+            }
+            else
+            {
+                installers.Add(new RepositoryCoreInstaller());
+            }
+     
+   
+            Container.Install(installers.ToArray());
             Container.Register(Castle.MicroKernel.Registration.Classes.FromThisAssembly()
                 .BasedOn<IController>().LifestylePerWebRequest()
                 .Configure(x => x.Named(x.Implementation.FullName)));

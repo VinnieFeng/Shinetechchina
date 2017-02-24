@@ -17,18 +17,9 @@ namespace Shinetechchina.Employee.Web.Installers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IEmployeeMgr>().ImplementedBy<EmployeeMgr>().LifestyleTransient());
-            container.Register(Component.For<IEmployeeRepository>().ImplementedBy<EmployeeRepository>().LifestyleTransient());
-            container.Register(Component.For<EmployeeDbContext>().ImplementedBy<EmployeeDbContext>().LifestyleTransient());
+            container.Register(Component.For<EmployeesController>().LifestylePerWebRequest());
             container.AddFacility<LoggingFacility>(f => f.LogUsing(LoggerImplementation.Log4net)
             .WithConfig(System.AppDomain.CurrentDomain.SetupInformation.ConfigurationFile));
-        }
-    }
-    public class DependencyConventions : IWindsorInstaller
-    {
-        public void Install(IWindsorContainer container, IConfigurationStore store)
-        {
-            container.Register(Component.For<EmployeesController>().LifestylePerWebRequest());
         }
     }
 }

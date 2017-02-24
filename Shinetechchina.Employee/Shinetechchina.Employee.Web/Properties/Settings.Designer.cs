@@ -34,7 +34,7 @@ namespace Shinetechchina.Employee.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool IsRepositoryMock {
             get {
                 return ((bool)(this["IsRepositoryMock"]));
