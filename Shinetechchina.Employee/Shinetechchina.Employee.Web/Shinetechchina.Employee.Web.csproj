@@ -1103,6 +1103,10 @@
       <Project>{8AF82A8A-12B2-4B17-A85B-7DD3690289AB}</Project>
       <Name>Shinetechchina.Employee.Repository.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shinetechchina.Employee.Repository.Mock\Shinetechchina.Employee.Repository.Mock.csproj">
+      <Project>{34255569-E481-4212-8C95-CAB69893311E}</Project>
+      <Name>Shinetechchina.Employee.Repository.Mock</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shinetechchina.Employee.Repository.Shared\Shinetechchina.Employee.Repository.Shared.csproj">
       <Project>{888AC7DB-9943-4CCF-ADB9-2B11DBDE5DEC}</Project>
       <Name>Shinetechchina.Employee.Repository.Shared</Name>

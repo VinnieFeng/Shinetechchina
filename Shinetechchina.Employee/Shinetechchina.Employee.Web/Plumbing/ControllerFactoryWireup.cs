@@ -11,13 +11,7 @@ namespace Shinetechchina.Employee.Web.Plumbing
         {
 #pragma warning disable 618
             var factory = IoC.Container.Resolve<IControllerFactory>();
-
             ControllerBuilder.Current.SetControllerFactory(factory);
-
-            //var factoryApi = IoC.Container.Resolve<Ih>();
-
-            //ControllerBuilder.Current.SetControllerFactory(factoryApi);
-
 #pragma warning restore 618
         }
     }
