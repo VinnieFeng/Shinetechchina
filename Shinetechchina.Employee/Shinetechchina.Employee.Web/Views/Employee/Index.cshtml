@@ -54,7 +54,7 @@
                 <div class="modal-body" style="height:150px;">
                     <div class="form-group">
                         <label class="col-md-3 control-label">First Name</label>
-                        <div class="col-md-8">
+                        <div class="col-md-9">
                             <input class="form-control" ng-model="Employee.FirstName" name="FirstName" required style="float:left;"/>
                             <span style="color:red;padding-left: 5px;" ng-show="empForm.FirstName.$dirty && empForm.FirstName.$invalid">
                                 <span ng-show="empForm.FirstName.$invalid" class="">*</span>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Last Name</label>
-                        <div class="col-md-8">
+                        <div class="col-md-9">
                             <input class="form-control" ng-model="Employee.LastName" name="LastName" required style="float:left;" />
                             <span style="color:red;padding-left: 5px;" ng-show="empForm.LastName.$dirty && empForm.LastName.$invalid">
                                 <span ng-show="empForm.LastName.$error.required">*</span>
@@ -72,20 +72,20 @@
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Phone</label>
-                        <div class="col-md-8">
+                        <div class="col-md-9">
                             <input class="form-control" ng-model="Employee.Phone" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Email</label>
-                        <div class="col-md-8">
-                            <input class="form-control" ng-model="Employee.Email" type="email" style="float:left;" name="Email" required/>
+                        <div class="col-md-9">
+                            <input class="form-control" ng-model="Employee.Email" name="Email" type="email" ng-pattern="@Html.Raw(@"/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/")" style="float:left;"  required/>
                             <span style="color:red;padding-left: 5px;" ng-show="empForm.Email.$dirty && empForm.Email.$invalid">
-                                <span ng-show="empForm.Email.$invalid">Email</span>
+                                <span data-ng-show="empForm.Email.$error.required">Required</span>
+                                <span data-ng-show="empForm.Email.$error.pattern">Invalid Email</span>
                             </span>
                         </div>
                     </div>
-                    <h1>{{empForm.Employee.$valid}}</h1>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
