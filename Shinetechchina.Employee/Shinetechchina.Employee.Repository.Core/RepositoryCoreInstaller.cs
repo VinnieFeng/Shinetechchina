@@ -1,6 +1,6 @@
-﻿using Castle.MicroKernel.Registration;
+﻿using Castle.Windsor;
+using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
 using Shinetechchina.Employee.Repository.Shared;
 
 namespace Shinetechchina.Employee.Repository.Core

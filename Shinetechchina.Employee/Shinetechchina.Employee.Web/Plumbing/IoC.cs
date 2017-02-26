@@ -1,8 +1,12 @@
-﻿using Castle.MicroKernel;
+﻿using System;
+using System.Web.Http;
+using System.Web.Mvc;
+using System.Web.Http.Dispatcher;
+using System.Collections.Generic;
+using Castle.Windsor;
+using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
-using Castle.Windsor;
-using Castle.Windsor.Installer;
 using Shinetechchina.Employee.Business.Core;
 using Shinetechchina.Employee.Business.Mock;
 using Shinetechchina.Employee.Repository.Core;
@@ -10,11 +14,7 @@ using Shinetechchina.Employee.Repository.Mock;
 using Shinetechchina.Employee.Web.Installers;
 using Shinetechchina.Employee.Web.Plumbing;
 using Shinetechchina.Employee.Web.Properties;
-using System;
-using System.Collections.Generic;
-using System.Web.Http;
-using System.Web.Http.Dispatcher;
-using System.Web.Mvc;
+
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(IoC), "Startup")]
 namespace Shinetechchina.Employee.Web.Plumbing

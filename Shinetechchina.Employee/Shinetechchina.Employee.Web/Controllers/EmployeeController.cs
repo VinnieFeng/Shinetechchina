@@ -1,11 +1,8 @@
-﻿using Shinetechchina.Employee.Business.Shared;
-using System;
-using System.Collections.Generic;
+﻿
 using System.Linq;
-using System.Web;
-
 using System.Web.Mvc;
 using Shinetechchina.Employee.Web.Models;
+using Shinetechchina.Employee.Business.Shared;
 
 namespace Shinetechchina.Employee.Web.Controllers
 {
@@ -30,7 +27,6 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpGet]
         public JsonResult GetAll()
         {
-           // var empMgr = Context.GetService<IEmployeeMgr>();
             var employeeList = empMgr.GetAllEmployee();
             var employeeViewList = employeeList.Select(t => new EmployeeViewModel(t));
             return Json(employeeViewList, JsonRequestBehavior.AllowGet);
@@ -40,7 +36,6 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpPost]
         public JsonResult Add(EmployeeViewModel emp)
         {
-           // var empMgr = Context.GetService<IEmployeeMgr>();
             var employee = empMgr.AddEmployee(emp.ToModel());
             return Json(employee, JsonRequestBehavior.AllowGet);
         }
@@ -49,7 +44,6 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpPost]
         public JsonResult Delete(string empID)
         {
-           // var empMgr = Context.GetService<IEmployeeMgr>();
             var employee = empMgr.DeleteEmployee(empID);
             return Json(employee, JsonRequestBehavior.AllowGet);
         }
@@ -58,7 +52,6 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpPost]
         public JsonResult Update(EmployeeViewModel emp)
         {
-           // var empMgr = Context.GetService<IEmployeeMgr>();
             var employee = empMgr.UpdateEmployee(emp.ToModel());
             return Json(employee, JsonRequestBehavior.AllowGet);
         }

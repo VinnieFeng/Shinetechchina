@@ -1,13 +1,11 @@
-﻿using Castle.Core.Internal;
+﻿using Moq;
+using System;
+using System.Collections.Generic;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Moq;
-using Shinetechchina.Employee.Repository.Core;
 using Shinetechchina.Employee.Repository.Shared;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+
 
 namespace Shinetechchina.Employee.Repository.Mock
 {

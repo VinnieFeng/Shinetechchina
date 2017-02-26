@@ -3,13 +3,7 @@ using Castle.Facilities.Logging;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using Shinetechchina.Employee.Business.Core;
-using Shinetechchina.Employee.Business.Shared;
-using Shinetechchina.Employee.Repository.Core;
-using Shinetechchina.Employee.Repository.Shared;
 using Shinetechchina.Employee.Web.Controllers;
-using System.Web.Http.Controllers;
-using System.Web.Mvc;
 
 namespace Shinetechchina.Employee.Web.Installers
 {

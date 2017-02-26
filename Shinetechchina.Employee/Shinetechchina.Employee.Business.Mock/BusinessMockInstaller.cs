@@ -1,12 +1,12 @@
 ﻿
 using Moq;
-using Shinetechchina.Employee.Business.Shared;
-using System.Collections.Generic;
-using Castle.MicroKernel.Registration;
-using Castle.MicroKernel.SubSystems.Configuration;
-using Castle.Windsor;
 using System;
 using System.Linq;
+using System.Collections.Generic;
+using Castle.Windsor;
+using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.SubSystems.Configuration;
+using Shinetechchina.Employee.Business.Shared;
 
 namespace Shinetechchina.Employee.Business.Mock
 {
