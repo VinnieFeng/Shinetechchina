@@ -1,23 +1,24 @@
 ﻿(function (Employee, undefined) {
     var employeeApp = angular.module('employeeApp', []);
 
-    employeeApp.factory('employeeService', ['$http', function ($http) {
-        var employeeApiUri = "/api/Employees/";
-        var employeeService = {};
-        employeeService.getEmployees = function () {
-            return $http.get(employeeApiUri);
-        };
-        employeeService.addEmployee = function (d) {
-            return $http.post(employeeApiUri, d);
-        };
-        employeeService.updateEmployee = function (d) {
-            return $http.put(employeeApiUri + d.EmployeeID, d);
-        };
-        employeeService.deleteEmployee = function (id) {
-            return $http.delete(employeeApiUri + id);
-        };
-        return employeeService;
-    }]);
+    employeeApp.constant('EMPLOYEE_API_URI', '/api/Employees/')
+        .factory('employeeService', function ($http, EMPLOYEE_API_URI, $log) {
+
+            var employeeService = {};
+            employeeService.getEmployees = function () {
+                return $http.get(EMPLOYEE_API_URI);
+            };
+            employeeService.addEmployee = function (d) {
+                return $http.post(EMPLOYEE_API_URI, d);
+            };
+            employeeService.updateEmployee = function (d) {
+                return $http.put(EMPLOYEE_API_URI + d.EmployeeID, d);
+            };
+            employeeService.deleteEmployee = function (id) {
+                return $http.delete(EMPLOYEE_API_URI + id);
+            };
+            return employeeService;
+        });
 
     employeeApp.controller('employeeCtrl', function ($scope, employeeService) {
         $scope.EmployeeList = [];
@@ -79,11 +80,11 @@
 
         $scope.openEditForm = function (emp) {
             $scope.Employee.IsAdd = false;
-            $scope.Employee.EmployeeID = emp.EmployeeID.trim();
-            $scope.Employee.FirstName = emp.FirstName.trim();
-            $scope.Employee.LastName = emp.LastName.trim();
-            $scope.Employee.Phone = emp.Phone.trim();
-            $scope.Employee.Email = emp.Email.trim();
+            $scope.Employee.EmployeeID = emp.EmployeeID;
+            $scope.Employee.FirstName = emp.FirstName;
+            $scope.Employee.LastName = emp.LastName;
+            $scope.Employee.Phone = emp.Phone;
+            $scope.Employee.Email = emp.Email;
             $('#formModal').modal({
                 keyboard: true,
             });
@@ -101,5 +102,7 @@
         };
 
         $scope.loadEmployeeList();
+
+       
     });
 }(window.Employee = window.Employee || {}));
