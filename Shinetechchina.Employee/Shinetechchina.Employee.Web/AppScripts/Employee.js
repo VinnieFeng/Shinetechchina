@@ -1,12 +1,30 @@
 ﻿(function (Employee, undefined) {
-    var module = angular.module('employeeApp', []);
-    module.controller('employeeCtrl', function ($scope, $http) {
-        $scope.EmployeeApiUri = "/api/Employees/";
+    var employeeApp = angular.module('employeeApp', []);
+
+    employeeApp.factory('employeeService', ['$http', function ($http) {
+        var employeeApiUri = "/api/Employees/";
+        var employeeService = {};
+        employeeService.getEmployees = function () {
+            return $http.get(employeeApiUri);
+        };
+        employeeService.addEmployee = function (d) {
+            return $http.post(employeeApiUri, d);
+        };
+        employeeService.updateEmployee = function (d) {
+            return $http.put(employeeApiUri + d.EmployeeID, d);
+        };
+        employeeService.deleteEmployee = function (id) {
+            return $http.delete(employeeApiUri + id);
+        };
+        return employeeService;
+    }]);
+
+    employeeApp.controller('employeeCtrl', function ($scope, employeeService) {
         $scope.EmployeeList = [];
         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '', IsAdd: false };
 
         $scope.loadEmployeeList = function loadEmployeeList() {
-            $http.get($scope.EmployeeApiUri).then(function (response) {
+            employeeService.getEmployees().then(function (response) {
                 $scope.EmployeeList = response.data;
             }, function (e) {
                 alert(e.data.Message);
@@ -15,7 +33,7 @@
 
         $scope.addEmployee = function () {
             if ($scope.Employee.IsAdd) {
-                $http.post($scope.EmployeeApiUri, $scope.Employee).then(function (response) {
+                employeeService.addEmployee($scope.Employee).then(function (response) {
                     if (response.data) {
                         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
                         $scope.loadEmployeeList();
@@ -27,7 +45,7 @@
                     alert(e.data.Message);
                 });
             } else {
-                $http.put($scope.EmployeeApiUri + $scope.Employee.EmployeeID, $scope.Employee).then(function (response) {
+                employeeService.updateEmployee($scope.Employee).then(function (response) {
                     if (response.data) {
                         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
                         $scope.loadEmployeeList();
@@ -45,7 +63,7 @@
         $scope.delEmployee = function (id) {
             if (confirm("Are you sure you want to delete this customer?")) {
                 // todo code for deletion
-                $http.delete($scope.EmployeeApiUri + id).then(function (response) {
+                employeeService.deleteEmployee(id).then(function (response) {
                     if (response.data) {
                         alert("Deleted successfully.");
                         // Refresh list
