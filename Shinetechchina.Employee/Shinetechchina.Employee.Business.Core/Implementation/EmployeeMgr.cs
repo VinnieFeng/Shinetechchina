@@ -18,7 +18,7 @@ namespace Shinetechchina.Employee.Business.Core
         public bool AddEmployee(EmployeeModel employee)
         {
             var emp = employee.ToEntry();
-            emp.EmployeeID = DateTime.Now.Ticks.ToString();
+            emp.EmployeeID = $"E{DateTime.Now.Ticks.ToString()}";//mock emplouyee ID
             emp.Created = DateTime.Now;
             emp.Modified = DateTime.Now;
             emp.Id = Guid.NewGuid();

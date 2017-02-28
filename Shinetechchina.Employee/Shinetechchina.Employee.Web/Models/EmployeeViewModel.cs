@@ -49,12 +49,12 @@ namespace Shinetechchina.Employee.Web.Models
         {
             EmployeeModel entry = new EmployeeModel()
             {
-                Email = vm.Email,
-                EmployeeID = vm.EmployeeID,
-                FirstName = vm.FirstName,
+                Email = vm.Email?.Trim(),
+                EmployeeID = vm.EmployeeID?.Trim(),
+                FirstName = vm.FirstName?.Trim(),
                 Id = vm.Id,
-                LastName = vm.LastName,
-                Phone = vm.Phone,
+                LastName = vm.LastName?.Trim(),
+                Phone = vm.Phone?.Trim(),
             };
             return entry;
         }
