@@ -28,7 +28,7 @@
             employeeService.getEmployees().then(function (response) {
                 $scope.EmployeeList = response.data;
             }, function (e) {
-                alert(e.data.Message);
+                showAlert('error', e.data.Message);
             });
         }
 
@@ -39,11 +39,12 @@
                         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
                         $scope.loadEmployeeList();
                         $scope.closeAddForm();
+                        showAlert('success', 'success');
                     } else {
-                        //save fail 
+                        showAlert('error', 'error');
                     }
                 }, function (e) {
-                    alert(e.data.Message);
+                    showAlert('error', e.data.Message);
                 });
             } else {
                 employeeService.updateEmployee($scope.Employee).then(function (response) {
@@ -51,11 +52,12 @@
                         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
                         $scope.loadEmployeeList();
                         $scope.closeAddForm();
+                        showAlert('success', 'success');
                     } else {
-                        //save fail 
+                        showAlert('error', 'error');
                     }
                 }, function (e) {
-                    alert(e.data.Message);
+                    showAlert('error', e.data.Message);
                 });
             }
         };
@@ -66,14 +68,14 @@
                 // todo code for deletion
                 employeeService.deleteEmployee(id).then(function (response) {
                     if (response.data) {
-                        alert("Deleted successfully.");
+                        showAlert('success', 'delete success');
                         // Refresh list
                         $scope.loadEmployeeList();
                     } else {
-                        //save fail 
+                        showAlert('error', 'delete error');
                     }
                 }, function (e) {
-                    alert(e.data.Message);
+                    showAlert('error', e.data.Message);
                 });
             }
         };
@@ -99,10 +101,22 @@
 
         $scope.closeAddForm = function () {
             $('#formModal').modal('hide');
+
         };
 
         $scope.loadEmployeeList();
 
-       
+        function showAlert(type, msg) {
+            var $alert = $(".alert-success");
+            if (type === 'error') {
+                $alert = $(".alert-error");
+            } else if (type === 'error') {
+                $alert = $(".alert-success");
+            }
+
+            $alert.text(msg).fadeTo(2000, 500).slideUp(500, function () {
+                $alert.slideUp(500);
+            });
+        }
     });
 }(window.Employee = window.Employee || {}));

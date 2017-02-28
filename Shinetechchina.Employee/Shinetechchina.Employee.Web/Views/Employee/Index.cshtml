@@ -5,10 +5,13 @@
 <h2>@ViewBag.Title.</h2>
 <hr />
 <div ng-app="employeeApp" ng-controller="employeeCtrl">
-    <div class="form-group">
+
+    <div class="form-group" style="height:50px;">
         <button class="btn btn-success" ng-click="openAddForm()">
             <span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Create New Customer
         </button>
+        <div class="alert alert-success" style="float:right;display:none;">Success</div>
+        <div class="alert alert-error" style="float:right;display:none;">Success</div>
     </div>
     <div class="form-group">
         <table style="width:100%;">
@@ -55,7 +58,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">First Name</label>
                         <div class="col-md-9">
-                            <input class="form-control" ng-model="Employee.FirstName" name="FirstName" required style="float:left;"/>
+                            <input class="form-control" ng-model="Employee.FirstName" name="FirstName" required style="float:left;" />
                             <span style="color:red;padding-left: 5px;" ng-show="empForm.FirstName.$dirty && empForm.FirstName.$invalid">
                                 <span ng-show="empForm.FirstName.$invalid" class="">*</span>
                             </span>
@@ -79,7 +82,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Email</label>
                         <div class="col-md-9">
-                            <input class="form-control" ng-model="Employee.Email" name="Email" type="email" ng-pattern="@Html.Raw(@"/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/")" style="float:left;"  required/>
+                            <input class="form-control" ng-model="Employee.Email" name="Email" type="email" ng-pattern="@Html.Raw(@"/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/")" style="float:left;" required />
                             <span style="color:red;padding-left: 5px;" ng-show="empForm.Email.$dirty && empForm.Email.$invalid">
                                 <span data-ng-show="empForm.Email.$error.required">*</span>
                                 <span data-ng-show="empForm.Email.$error.pattern">Invalid Email</span>

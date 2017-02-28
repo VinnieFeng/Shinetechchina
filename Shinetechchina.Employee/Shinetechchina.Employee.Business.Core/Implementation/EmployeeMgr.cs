@@ -28,6 +28,10 @@ namespace Shinetechchina.Employee.Business.Core
 
         public bool DeleteEmployee(string employeeID)
         {
+            if (string.IsNullOrEmpty(employeeID))
+            {
+                throw new ArgumentNullException(nameof(employeeID));
+            }
             int effectRows = _employeeRepository.DeleteEmployee(employeeID);
             return effectRows > 0;
         }
@@ -38,9 +42,13 @@ namespace Shinetechchina.Employee.Business.Core
             return empEntity;
         }
 
-        public EmployeeModel GetEmployee(string id)
+        public EmployeeModel GetEmployee(string employeeID)
         {
-            var empEntity = _employeeRepository.GetEmployee(id);
+            if (string.IsNullOrEmpty(employeeID))
+            {
+                throw new ArgumentNullException(nameof(employeeID));
+            }
+            var empEntity = _employeeRepository.GetEmployee(employeeID);
             return new EmployeeModel(empEntity);
         }
 
