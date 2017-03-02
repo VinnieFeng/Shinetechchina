@@ -23,7 +23,7 @@
     employeeApp.controller('employeeCtrl', function ($scope, employeeService) {
         $scope.EmployeeList = [];
         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '', IsAdd: false };
-
+        var $body = $('body');
         $scope.loadEmployeeList = function loadEmployeeList() {
             employeeService.getEmployees().then(function (response) {
                 $scope.EmployeeList = response.data;
@@ -34,6 +34,7 @@
 
         $scope.addEmployee = function () {
             if ($scope.Employee.IsAdd) {
+                $body.mask('processing',500);
                 employeeService.addEmployee($scope.Employee).then(function (response) {
                     if (response.data) {
                         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
@@ -43,10 +44,13 @@
                     } else {
                         showAlert('error', 'error');
                     }
+                    $body.unmask();
                 }, function (e) {
+                    $body.unmask();
                     showAlert('error', e.data.Message);
                 });
             } else {
+                $body.mask('processing',500);
                 employeeService.updateEmployee($scope.Employee).then(function (response) {
                     if (response.data) {
                         $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
@@ -56,7 +60,9 @@
                     } else {
                         showAlert('error', 'error');
                     }
+                    $body.unmask();
                 }, function (e) {
+                    $body.unmask();
                     showAlert('error', e.data.Message);
                 });
             }
@@ -66,6 +72,7 @@
         $scope.delEmployee = function (id) {
             if (confirm("Are you sure you want to delete this customer?")) {
                 // todo code for deletion
+                $body.mask('processing',500);
                 employeeService.deleteEmployee(id).then(function (response) {
                     if (response.data) {
                         showAlert('success', 'delete success');
@@ -74,8 +81,10 @@
                     } else {
                         showAlert('error', 'delete error');
                     }
+                    $body.unmask();
                 }, function (e) {
                     showAlert('error', e.data.Message);
+                    $body.unmask();
                 });
             }
         };
