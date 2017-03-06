@@ -17,12 +17,12 @@ namespace Shinetechchina.Employee.Business.Core
 
         public bool AddEmployee(EmployeeModel employee)
         {
-            var emp = employee.ToEntry();
-            emp.EmployeeID = $"E{DateTime.Now.Ticks.ToString()}";//mock emplouyee ID
-            emp.Created = DateTime.Now;
-            emp.Modified = DateTime.Now;
-            emp.Id = Guid.NewGuid();
-            int insertRowsCount = _employeeRepository.AddEmployee(emp);
+            var employeeEntry = employee.ToEntry();
+            employeeEntry.EmployeeID = $"E{DateTime.Now.Ticks.ToString()}";//mock emplouyee ID
+            employeeEntry.Created = DateTime.Now;
+            employeeEntry.Modified = DateTime.Now;
+            employeeEntry.Id = Guid.NewGuid();
+            int insertRowsCount = _employeeRepository.AddEmployee(employeeEntry);
             return insertRowsCount == 1;
         }
 
@@ -54,9 +54,9 @@ namespace Shinetechchina.Employee.Business.Core
 
         public bool UpdateEmployee(EmployeeModel employee)
         {
-            var emp = employee.ToEntry();
-            emp.Modified = DateTime.Now;
-            int effectRows = _employeeRepository.UpdateEmployee(emp);
+            var employeeEntry = employee.ToEntry();
+            employeeEntry.Modified = DateTime.Now;
+            int effectRows = _employeeRepository.UpdateEmployee(employeeEntry);
             return effectRows > 0;
         }
     }

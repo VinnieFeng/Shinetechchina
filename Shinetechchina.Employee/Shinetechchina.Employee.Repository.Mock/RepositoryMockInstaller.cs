@@ -28,11 +28,11 @@ namespace Shinetechchina.Employee.Repository.Mock
 
             List<EmployeeEntry> data = new List<EmployeeEntry>
             {
-                        new EmployeeEntry { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntry { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntry { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntry { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntry { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntry { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
             };
-            EmployeeEntry result = new EmployeeEntry { Email = "Email", EmployeeID = "EmployeeID", FirstName = "FirstName1", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
+            EmployeeEntry result = new EmployeeEntry { Email = "Email", EmployeeID = "EmployeeID1", FirstName = "FirstName1", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
 
             mock.Setup(m => m.AddEmployee(It.IsAny<EmployeeEntry>())).Returns(1);
             mock.Setup(m => m.DeleteEmployee(It.IsAny<string>())).Returns(1);

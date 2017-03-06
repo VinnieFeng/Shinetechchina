@@ -16,44 +16,6 @@ namespace Shinetechchina.Employee.Web.Controllers
             empMgr = service;
         }
 
-        [HandleError]
-        // GET: Employee
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        [JsonException]
-        [HttpGet]
-        public JsonResult GetAll()
-        {
-            var employeeList = empMgr.GetAllEmployee();
-            var employeeViewList = employeeList.Select(t => new EmployeeViewModel(t));
-            return Json(employeeViewList, JsonRequestBehavior.AllowGet);
-        }
-
-        [JsonException]
-        [HttpPost]
-        public JsonResult Add(EmployeeViewModel emp)
-        {
-            var employee = empMgr.AddEmployee(emp.ToModel());
-            return Json(employee, JsonRequestBehavior.AllowGet);
-        }
-
-        [JsonException]
-        [HttpPost]
-        public JsonResult Delete(string empID)
-        {
-            var employee = empMgr.DeleteEmployee(empID);
-            return Json(employee, JsonRequestBehavior.AllowGet);
-        }
-
-        [JsonException]
-        [HttpPost]
-        public JsonResult Update(EmployeeViewModel emp)
-        {
-            var employee = empMgr.UpdateEmployee(emp.ToModel());
-            return Json(employee, JsonRequestBehavior.AllowGet);
-        }
+      
     }
 }

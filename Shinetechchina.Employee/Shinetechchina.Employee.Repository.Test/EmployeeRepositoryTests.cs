@@ -18,9 +18,9 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
             // Create some test data
             var data = new List<EmployeeEntity>
             {
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
             };
 
             // Create a mock set and context
@@ -42,9 +42,9 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
             // Create some test data
             var data = new List<EmployeeEntity>
             {
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
             };
 
             // Create a mock set and context
@@ -53,7 +53,7 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
             context.Setup(c => c.Employees).Returns(set.Object);
 
             EmployeeRepository empRepo = new EmployeeRepository(context.Object);
-            var effectRows = empRepo.DeleteEmployee("EmployeeID");
+            var effectRows = empRepo.DeleteEmployee("EmployeeID1");
             // Check the results
             set.Verify(m => m.Remove(It.IsAny<EmployeeEntity>()), Times.Once());
             context.Verify(m => m.SaveChanges(), Times.Once());
@@ -65,9 +65,9 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
             // Create some test data
             var data = new List<EmployeeEntity>
             {
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
             };
 
             // Create a mock set and context
@@ -87,9 +87,9 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
             // Create some test data
             var data = new List<EmployeeEntity>
             {
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
             };
 
             // Create a mock set and context
