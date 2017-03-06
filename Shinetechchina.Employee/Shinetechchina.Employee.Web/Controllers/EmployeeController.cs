@@ -16,6 +16,12 @@ namespace Shinetechchina.Employee.Web.Controllers
             empMgr = service;
         }
 
-      
+        [HandleError]
+        // GET: Employee
+        public ActionResult Index()
+        {
+            return View();
+        }
+
     }
 }
