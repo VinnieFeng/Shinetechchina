@@ -22,20 +22,20 @@ namespace Shinetechchina.Employee.Business.Shared
         /// </summary>
         /// <param name="employee">employee model</param>
         /// <returns>is update success </returns>
-        bool UpdateEmployee(EmployeeModel employee);
+        void UpdateEmployee(EmployeeModel employee);
 
         /// <summary>
         /// add a employee 
         /// </summary>
         /// <param name="employee">employee model</param>
         /// <returns>is add success </returns>
-        bool AddEmployee(EmployeeModel employee);
+        void AddEmployee(EmployeeModel employee);
 
         /// <summary>
         /// delete an employee by id
         /// </summary>
         /// <param name="id">employee ID</param>
         /// <returns>is success </returns>
-        bool DeleteEmployee(string id);
+        void DeleteEmployee(string id);
     }
 }

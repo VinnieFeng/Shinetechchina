@@ -52,7 +52,7 @@ namespace Shinetechchina.Employee.Web.Controllers.Tests
         {
             Mock<IEmployeeMgr> mock = new Mock<IEmployeeMgr>();
             EmployeeViewModel mockData = new EmployeeViewModel { Email = "Email@email.com", EmployeeID = "EmployeeID", FirstName = "FirstName", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
-            mock.Setup(m => m.AddEmployee(It.IsAny<EmployeeModel>())).Returns(true);
+            mock.Setup(m => m.AddEmployee(It.IsAny<EmployeeModel>()));
 
             var controller = new EmployeesController(mock.Object);
             controller.Configuration = new HttpConfiguration();
@@ -63,7 +63,7 @@ namespace Shinetechchina.Employee.Web.Controllers.Tests
             };
             controller.Validate(mockData);
             HttpResponseMessage result = controller.Post(mockData);
-            Assert.IsTrue(result.Content.ReadAsStringAsync().Result.ToUpper() == "TRUE");
+            Assert.IsNotNull(result);
         }
 
         [TestMethod()]
@@ -71,7 +71,7 @@ namespace Shinetechchina.Employee.Web.Controllers.Tests
         {
             Mock<IEmployeeMgr> mock = new Mock<IEmployeeMgr>();
             EmployeeViewModel mockData = new EmployeeViewModel { Email = "Email@email.com", EmployeeID = "EmployeeID", FirstName = "FirstName", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
-            mock.Setup(m => m.UpdateEmployee(It.IsAny<EmployeeModel>())).Returns(true);
+            mock.Setup(m => m.UpdateEmployee(It.IsAny<EmployeeModel>()));
 
             var controller = new EmployeesController(mock.Object);
             controller.Configuration = new HttpConfiguration();
@@ -82,7 +82,7 @@ namespace Shinetechchina.Employee.Web.Controllers.Tests
             };
             controller.Validate(mockData);
             HttpResponseMessage result = controller.Put(mockData.EmployeeID, mockData);
-            Assert.IsTrue(result.Content.ReadAsStringAsync().Result.ToUpper() == "TRUE");
+            Assert.IsNotNull(result);
         }
 
         [TestMethod()]
@@ -90,7 +90,7 @@ namespace Shinetechchina.Employee.Web.Controllers.Tests
         {
             Mock<IEmployeeMgr> mock = new Mock<IEmployeeMgr>();
             EmployeeViewModel mockData = new EmployeeViewModel { Email = "Email@email.com", EmployeeID = "EmployeeID", FirstName = "FirstName", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
-            mock.Setup(m => m.DeleteEmployee("EmployeeID")).Returns(true);
+            mock.Setup(m => m.DeleteEmployee("EmployeeID"));
 
             var controller = new EmployeesController(mock.Object);
             controller.Configuration = new HttpConfiguration();
@@ -100,14 +100,14 @@ namespace Shinetechchina.Employee.Web.Controllers.Tests
                 RequestUri = new Uri("http://localhost/api/employees/")
             };
             HttpResponseMessage result = controller.Delete("EmployeeID");
-            Assert.IsTrue(result.Content.ReadAsStringAsync().Result.ToUpper() == "TRUE");
+            Assert.IsNotNull(result);
         }
         [TestMethod()]
         public void DeleteTest_ID_InValid()
         {
             Mock<IEmployeeMgr> mock = new Mock<IEmployeeMgr>();
             EmployeeViewModel mockData = new EmployeeViewModel { Email = "Email@email.com", EmployeeID = "EmployeeID", FirstName = "FirstName", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
-            mock.Setup(m => m.DeleteEmployee("EmployeeID")).Returns(true);
+            mock.Setup(m => m.DeleteEmployee("EmployeeID"));
 
             var controller = new EmployeesController(mock.Object);
             controller.Configuration = new HttpConfiguration();
@@ -117,7 +117,7 @@ namespace Shinetechchina.Employee.Web.Controllers.Tests
                 RequestUri = new Uri("http://localhost/api/employees/")
             };
             HttpResponseMessage result = controller.Delete("EmployeeID3");
-            Assert.IsTrue(result.Content.ReadAsStringAsync().Result.ToUpper() == "FALSE");
+            Assert.IsNotNull(result);
         }
     }
 }

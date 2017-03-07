@@ -10,16 +10,16 @@ namespace Shinetechchina.Employee.Web.Controllers
     [Authorize]
     public class EmployeesController : ApiController
     {
-        private IEmployeeMgr empMgr;
+        private IEmployeeMgr employeeManager;
 
         public EmployeesController(IEmployeeMgr _service)
         {
-            empMgr = _service;
+            employeeManager = _service;
         }
         // GET: api/Employees
         public IEnumerable<EmployeeViewModel> Get()
         {
-            var employeeList = empMgr.GetAllEmployee();
+            var employeeList = employeeManager.GetAllEmployee();
             var employeeViewList = employeeList.Select(t => new EmployeeViewModel(t));
             return employeeViewList;
         }
@@ -27,7 +27,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         // GET: api/Employees/5
         public EmployeeViewModel Get(string id)
         {
-            var employee = empMgr.GetEmployee(id);
+            var employee = employeeManager.GetEmployee(id);
             return new EmployeeViewModel(employee);
         }
 
@@ -35,23 +35,23 @@ namespace Shinetechchina.Employee.Web.Controllers
         [HttpPost]
         public HttpResponseMessage Post(EmployeeViewModel emp)
         {
-            var isSuccess = empMgr.AddEmployee(emp.ToModel());
-            return Request.CreateResponse<bool>(System.Net.HttpStatusCode.Created, isSuccess);
+            employeeManager.AddEmployee(emp.ToModel());
+            return Request.CreateResponse(System.Net.HttpStatusCode.Created);
         }
 
         // PUT: api/Employees/5
         public HttpResponseMessage Put(string id, EmployeeViewModel emp)
         {
-            var isSuccess = empMgr.UpdateEmployee(emp.ToModel());
-            return Request.CreateResponse<bool>(System.Net.HttpStatusCode.OK, isSuccess);
+            employeeManager.UpdateEmployee(emp.ToModel());
+            return Request.CreateResponse(System.Net.HttpStatusCode.OK);
         }
 
         // DELETE: api/Employees/5
         [HttpDelete]
         public HttpResponseMessage Delete(string id)
         {
-            var isSuccess = empMgr.DeleteEmployee(id);
-            return Request.CreateResponse<bool>(System.Net.HttpStatusCode.OK, isSuccess);
+            employeeManager.DeleteEmployee(id);
+            return Request.CreateResponse(System.Net.HttpStatusCode.OK);
         }
     }
 }

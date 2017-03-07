@@ -35,9 +35,9 @@ namespace Shinetechchina.Employee.Business.Mock
             mock.Setup(m => m.GetEmployee(It.IsAny<string>())).Returns(
                     new EmployeeModel { Email = "Email", EmployeeID = "EmployeeID1", FirstName = "FirstName1", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" }
               );
-            mock.Setup(m => m.AddEmployee(It.IsAny<EmployeeModel>())).Returns(true);
-            mock.Setup(m => m.DeleteEmployee(It.IsAny<string>())).Returns(true);
-            mock.Setup(m => m.UpdateEmployee(It.IsAny<EmployeeModel>())).Returns(true);
+            mock.Setup(m => m.AddEmployee(It.IsAny<EmployeeModel>()));
+            mock.Setup(m => m.DeleteEmployee(It.IsAny<string>()));
+            mock.Setup(m => m.UpdateEmployee(It.IsAny<EmployeeModel>()));
         }
     }
 }

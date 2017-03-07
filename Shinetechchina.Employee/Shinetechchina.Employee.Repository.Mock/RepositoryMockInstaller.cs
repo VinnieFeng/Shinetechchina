@@ -11,8 +11,7 @@ namespace Shinetechchina.Employee.Repository.Mock
 {
     public class RepositoryMockInstaller : IWindsorInstaller
     {
-
-        Mock<IEmployeeRepository> mock = new Mock<IEmployeeRepository>();
+        Mock<IUnitOfWork> mock = new Mock<IUnitOfWork>();
         public RepositoryMockInstaller()
         {
             SetUpMock();
@@ -20,12 +19,11 @@ namespace Shinetechchina.Employee.Repository.Mock
 
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            container.Register(Component.For<IEmployeeRepository>().Instance(mock.Object).LifestyleTransient());
+            container.Register(Component.For<IUnitOfWork>().Instance(mock.Object).LifestyleTransient());
         }
 
         private void SetUpMock()
         {
-
             List<EmployeeEntry> data = new List<EmployeeEntry>
             {
                         new EmployeeEntry { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
@@ -33,12 +31,12 @@ namespace Shinetechchina.Employee.Repository.Mock
                         new EmployeeEntry { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
             };
             EmployeeEntry result = new EmployeeEntry { Email = "Email", EmployeeID = "EmployeeID1", FirstName = "FirstName1", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
-
-            mock.Setup(m => m.AddEmployee(It.IsAny<EmployeeEntry>())).Returns(1);
-            mock.Setup(m => m.DeleteEmployee(It.IsAny<string>())).Returns(1);
-            mock.Setup(m => m.UpdateEmployee(It.IsAny<EmployeeEntry>())).Returns(1);
-            mock.Setup(m => m.GetAllEmployee()).Returns(data);
-            mock.Setup(m => m.GetEmployee(It.IsAny<string>())).Returns(result);
+            mock.Setup(m => m.EmployeeRepository.AddEmployee(It.IsAny<EmployeeEntry>()));
+            mock.Setup(m => m.EmployeeRepository.DeleteEmployee(It.IsAny<string>()));
+            mock.Setup(m => m.EmployeeRepository.UpdateEmployee(It.IsAny<EmployeeEntry>()));
+            mock.Setup(m => m.EmployeeRepository.GetAllEmployee()).Returns(data);
+            mock.Setup(m => m.EmployeeRepository.GetEmployee(It.IsAny<string>())).Returns(result);
+            mock.Setup(m => m.Commit()).Returns(1);
         }
     }
 }

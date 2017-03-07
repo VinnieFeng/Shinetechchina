@@ -22,20 +22,20 @@ namespace Shinetechchina.Employee.Repository.Shared
         /// </summary>
         /// <param name="employee">employee entry</param>
         /// <returns>is success </returns>
-        int AddEmployee(EmployeeEntry employee);
+        void AddEmployee(EmployeeEntry employee);
 
         /// <summary>
         /// delete an employee 
         /// </summary>
         /// <param name="employee">emplouee id</param>
         /// <returns>is success </returns>
-        int DeleteEmployee(string employeeID);
+        void DeleteEmployee(string employeeID);
 
         /// <summary>
         /// update an employee 
         /// </summary>
         /// <param name="employee">emplouyee entry</param>
         /// <returns>is success </returns>
-        int UpdateEmployee(EmployeeEntry employee);
+        void UpdateEmployee(EmployeeEntry employee);
     }
 }

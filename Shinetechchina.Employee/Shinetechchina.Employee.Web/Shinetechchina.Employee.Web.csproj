@@ -217,7 +217,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Installers\AppInstaller.cs" />
-    <Compile Include="Installers\ControllerInstaller.cs" />
     <Compile Include="Installers\WindsorCompositionRoot.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EmployeeViewModel.cs" />

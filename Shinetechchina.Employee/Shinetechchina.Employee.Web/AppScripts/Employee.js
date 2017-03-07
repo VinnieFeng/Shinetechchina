@@ -34,32 +34,24 @@
 
         $scope.addEmployee = function () {
             if ($scope.Employee.IsAdd) {
-                $body.mask('processing',500);
+                $body.mask('processing', 500);
                 employeeService.addEmployee($scope.Employee).then(function (response) {
-                    if (response.data) {
-                        $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
-                        $scope.loadEmployeeList();
-                        $scope.closeAddForm();
-                        showAlert('success', 'success');
-                    } else {
-                        showAlert('error', 'error');
-                    }
+                    $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
+                    $scope.loadEmployeeList();
+                    $scope.closeAddForm();
+                    showAlert('success', 'success');
                     $body.unmask();
                 }, function (e) {
                     $body.unmask();
                     showAlert('error', e.data.Message);
                 });
             } else {
-                $body.mask('processing',500);
+                $body.mask('processing', 500);
                 employeeService.updateEmployee($scope.Employee).then(function (response) {
-                    if (response.data) {
-                        $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
-                        $scope.loadEmployeeList();
-                        $scope.closeAddForm();
-                        showAlert('success', 'success');
-                    } else {
-                        showAlert('error', 'error');
-                    }
+                    $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
+                    $scope.loadEmployeeList();
+                    $scope.closeAddForm();
+                    showAlert('success', 'success');
                     $body.unmask();
                 }, function (e) {
                     $body.unmask();
@@ -72,15 +64,11 @@
         $scope.delEmployee = function (id) {
             if (confirm("Are you sure you want to delete this customer?")) {
                 // todo code for deletion
-                $body.mask('processing',500);
+                $body.mask('processing', 500);
                 employeeService.deleteEmployee(id).then(function (response) {
-                    if (response.data) {
-                        showAlert('success', 'delete success');
-                        // Refresh list
-                        $scope.loadEmployeeList();
-                    } else {
-                        showAlert('error', 'delete error');
-                    }
+                    showAlert('success', 'delete success');
+                    // Refresh list
+                    $scope.loadEmployeeList();
                     $body.unmask();
                 }, function (e) {
                     showAlert('error', e.data.Message);

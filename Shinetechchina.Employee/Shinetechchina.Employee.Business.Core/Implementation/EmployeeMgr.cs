@@ -8,38 +8,38 @@ namespace Shinetechchina.Employee.Business.Core
 {
     public class EmployeeMgr : IEmployeeMgr
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public EmployeeMgr(IEmployeeRepository employeeRepository)
+        public EmployeeMgr(IUnitOfWork employeeUnitOfWork)
         {
-            _employeeRepository = employeeRepository;
+            _unitOfWork = employeeUnitOfWork;
         }
 
-        public bool AddEmployee(EmployeeModel employee)
+        public void AddEmployee(EmployeeModel employee)
         {
             var employeeEntry = employee.ToEntry();
             employeeEntry.EmployeeID = $"E{DateTime.Now.Ticks.ToString()}";//mock emplouyee ID
             employeeEntry.Created = DateTime.Now;
             employeeEntry.Modified = DateTime.Now;
             employeeEntry.Id = Guid.NewGuid();
-            int insertRowsCount = _employeeRepository.AddEmployee(employeeEntry);
-            return insertRowsCount == 1;
+            _unitOfWork.EmployeeRepository.AddEmployee(employeeEntry);
+            _unitOfWork.Commit();
         }
 
-        public bool DeleteEmployee(string employeeID)
+        public void DeleteEmployee(string employeeID)
         {
             if (string.IsNullOrEmpty(employeeID))
             {
                 throw new ArgumentNullException(nameof(employeeID));
             }
-            int effectRows = _employeeRepository.DeleteEmployee(employeeID);
-            return effectRows > 0;
+            _unitOfWork.EmployeeRepository.DeleteEmployee(employeeID);
+            _unitOfWork.Commit();
         }
 
         public IEnumerable<EmployeeModel> GetAllEmployee()
         {
-            var empEntity = _employeeRepository.GetAllEmployee().Select(t => new EmployeeModel(t));
-            return empEntity;
+            var employeeList = _unitOfWork.EmployeeRepository.GetAllEmployee().Select(t => new EmployeeModel(t));
+            return employeeList;
         }
 
         public EmployeeModel GetEmployee(string employeeID)
@@ -48,16 +48,16 @@ namespace Shinetechchina.Employee.Business.Core
             {
                 throw new ArgumentNullException(nameof(employeeID));
             }
-            var empEntity = _employeeRepository.GetEmployee(employeeID);
-            return new EmployeeModel(empEntity);
+            var employeeEntity = _unitOfWork.EmployeeRepository.GetEmployee(employeeID);
+            return new EmployeeModel(employeeEntity);
         }
 
-        public bool UpdateEmployee(EmployeeModel employee)
+        public void UpdateEmployee(EmployeeModel employee)
         {
             var employeeEntry = employee.ToEntry();
             employeeEntry.Modified = DateTime.Now;
-            int effectRows = _employeeRepository.UpdateEmployee(employeeEntry);
-            return effectRows > 0;
+            _unitOfWork.EmployeeRepository.UpdateEmployee(employeeEntry);
+            _unitOfWork.Commit();
         }
     }
 }

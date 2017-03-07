@@ -9,11 +9,8 @@ namespace Shinetechchina.Employee.Web.Controllers
     [Authorize]
     public class EmployeeController : BaseController
     {
-        private readonly IEmployeeMgr empMgr;
-
         public EmployeeController(IEmployeeMgr service)
         {
-            empMgr = service;
         }
 
         [HandleError]

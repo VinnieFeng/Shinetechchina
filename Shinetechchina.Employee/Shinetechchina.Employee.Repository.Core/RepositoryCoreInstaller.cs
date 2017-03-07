@@ -11,6 +11,7 @@ namespace Shinetechchina.Employee.Repository.Core
         {
             container.Register(Component.For<IEmployeeRepository>().ImplementedBy<EmployeeRepository>().LifestyleTransient());
             container.Register(Component.For<EmployeeDbContext>().ImplementedBy<EmployeeDbContext>().LifestyleTransient());
+            container.Register(Component.For<IUnitOfWork>().ImplementedBy<UnitOfWork>().LifestyleTransient());
         }
     }
 }

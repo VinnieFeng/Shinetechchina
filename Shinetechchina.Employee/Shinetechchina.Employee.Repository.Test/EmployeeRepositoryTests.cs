@@ -12,28 +12,21 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
     [TestClass()]
     public class EmployeeRepositoryTests
     {
+        private Mock<DbSet<EmployeeEntity>> set = null;
+        private Mock<EmployeeDbContext> context = null;
+        private IUnitOfWork unitOfWork = null;
+
         [TestMethod()]
         public void AddEmployeeTest()
         {
+            SetUpMock();
             // Create some test data
-            var data = new List<EmployeeEntity>
-            {
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-            };
-
-            // Create a mock set and context
-            var set = new Mock<DbSet<EmployeeEntity>>().SetupData(data);
-            var context = new Mock<EmployeeDbContext>();
-            context.Setup(c => c.Employees).Returns(set.Object);
-
-            EmployeeRepository empRepo = new EmployeeRepository(context.Object);
             var mockData = new EmployeeEntry { Email = "Email", EmployeeID = "EmployeeID", FirstName = "FirstName1", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
-            var effectRows = empRepo.AddEmployee(mockData);
             // Check the results
+            unitOfWork.EmployeeRepository.AddEmployee(mockData);
+            unitOfWork.Commit();
             set.Verify(m => m.Add(It.IsAny<EmployeeEntity>()), Times.Once());
-            context.Verify(m => m.SaveChanges(), Times.Once());
+            context.Verify(m => m.SaveChanges(), Times.Once()); ;
         }
 
         [TestMethod()]
@@ -46,14 +39,9 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
                         new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
                         new EmployeeEntity { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
             };
-
-            // Create a mock set and context
-            var set = new Mock<DbSet<EmployeeEntity>>().SetupData(data);
-            var context = new Mock<EmployeeDbContext>();
-            context.Setup(c => c.Employees).Returns(set.Object);
-
-            EmployeeRepository empRepo = new EmployeeRepository(context.Object);
-            var effectRows = empRepo.DeleteEmployee("EmployeeID1");
+            SetUpMock();
+            unitOfWork.EmployeeRepository.DeleteEmployee("EmployeeID1");
+            unitOfWork.Commit();
             // Check the results
             set.Verify(m => m.Remove(It.IsAny<EmployeeEntity>()), Times.Once());
             context.Verify(m => m.SaveChanges(), Times.Once());
@@ -71,18 +59,24 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
             };
 
             // Create a mock set and context
-            var set = new Mock<DbSet<EmployeeEntity>>().SetupData(data);
-            var context = new Mock<EmployeeDbContext>();
-            context.Setup(c => c.Employees).Returns(set.Object);
-
-            EmployeeRepository empRepo = new EmployeeRepository(context.Object);
-            var resultList = empRepo.GetAllEmployee().ToList();
+            SetUpMock();
+            var resultList =unitOfWork.EmployeeRepository.GetAllEmployee().ToList();
             // Check the results
             data.ForEach(m => Assert.IsTrue(resultList.Exists(r => r.EmployeeID == m.EmployeeID)));
         }
 
         [TestMethod()]
         public void GetEmployeeTest()
+        {
+            // Create a mock set and context
+            SetUpMock();
+
+            var result = unitOfWork.EmployeeRepository.GetEmployee("EmployeeID1");
+            // Check the results
+            Assert.IsTrue(result.FirstName == "FirstName1");
+        }
+
+        private void SetUpMock()
         {
             // Create some test data
             var data = new List<EmployeeEntity>
@@ -93,14 +87,10 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
             };
 
             // Create a mock set and context
-            var set = new Mock<DbSet<EmployeeEntity>>().SetupData(data);
-            var context = new Mock<EmployeeDbContext>();
+            set = new Mock<DbSet<EmployeeEntity>>().SetupData(data);
+            context = new Mock<EmployeeDbContext>();
             context.Setup(c => c.Employees).Returns(set.Object);
-
-            EmployeeRepository empRepo = new EmployeeRepository(context.Object);
-            var result = empRepo.GetEmployee("EmployeeID1");
-            // Check the results
-            Assert.IsTrue(result.FirstName== data.First(t=>t.EmployeeID== "EmployeeID1").FirstName);
+            unitOfWork = new UnitOfWork(context.Object);
         }
     }
 }

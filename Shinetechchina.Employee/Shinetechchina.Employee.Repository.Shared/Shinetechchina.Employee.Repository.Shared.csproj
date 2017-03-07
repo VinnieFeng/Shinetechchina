@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Contracts\IEmployeeRepository.cs" />
     <Compile Include="Entries\EmployeeEntry.cs" />
+    <Compile Include="Contracts\IUnitOfWork.cs" />
     <Compile Include="Models\EmployeeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

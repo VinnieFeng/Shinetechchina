@@ -12,19 +12,16 @@ namespace Shinetechchina.Employee.Repository.Core
         {
             _context = ctx;
         }
-        public int AddEmployee(EmployeeEntry employee)
+        public void AddEmployee(EmployeeEntry employee)
         {
             EmployeeEntity employeeEntity = employee.ToEntity();
             employeeEntity = _context.Employees.Add(employeeEntity);
-            int affectRows = _context.SaveChanges();
-            return affectRows;
         }
 
-        public int DeleteEmployee(string employeeID)
+        public void DeleteEmployee(string employeeID)
         {
             var empployee = _context.Employees.First(t => t.EmployeeID == employeeID);
              _context.Employees.Remove(empployee);
-            return _context.SaveChanges();
         }
 
         public IEnumerable<EmployeeEntry> GetAllEmployee()
@@ -35,20 +32,19 @@ namespace Shinetechchina.Employee.Repository.Core
 
         public EmployeeEntry GetEmployee(string EmployeeID)
         {
-            var entity = _context.Employees.FirstOrDefault(t => t.EmployeeID == EmployeeID);
-            return entity.ToEntry();
+            var empployee = _context.Employees.FirstOrDefault(t => t.EmployeeID == EmployeeID);
+            return empployee.ToEntry();
         }
 
-        public int UpdateEmployee(EmployeeEntry employee)
+        public void UpdateEmployee(EmployeeEntry employee)
         {
-            var entity = _context.Employees.FirstOrDefault(t => t.EmployeeID == employee.EmployeeID);
-            entity.Email = employee.Email;
-            entity.EmployeeID = employee.EmployeeID;
-            entity.FirstName = employee.FirstName;
-            entity.LastName = employee.LastName;
-            entity.Phone = employee.Phone;
-            _context.Entry(entity).State = EntityState.Modified;
-            return _context.SaveChanges();
+            var empployee = _context.Employees.FirstOrDefault(t => t.EmployeeID == employee.EmployeeID);
+            empployee.Email = employee.Email;
+            empployee.EmployeeID = employee.EmployeeID;
+            empployee.FirstName = employee.FirstName;
+            empployee.LastName = employee.LastName;
+            empployee.Phone = employee.Phone;
+            _context.Entry(empployee).State = EntityState.Modified;
         }
     }
 }
