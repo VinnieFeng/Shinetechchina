@@ -1,14 +1,13 @@
-namespace Shinetechchina.Employee.Repository.Shared
+namespace Shinetechchina.Employee.Repository.Core
 {
+    using Shared;
     using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     [Table("Employee")]
-    public class EmployeeEntity
+    public class EmployeeEntity : BaseEntity<Guid>
     {
-        public Guid Id { get; set; }
-
         [Required]
         [StringLength(20)]
         public string EmployeeID { get; set; }
@@ -21,6 +20,7 @@ namespace Shinetechchina.Employee.Repository.Shared
         [StringLength(50)]
         public string LastName { get; set; }
 
+        [StringLength(50)]
         public string Gender { get; set; }
 
         public bool? Married { get; set; }
@@ -31,14 +31,12 @@ namespace Shinetechchina.Employee.Repository.Shared
         [StringLength(50)]
         public string Email { get; set; }
 
-        [Required]
-        public DateTime Modified { get; set; }
-
-        [Required]
         public DateTime Created { get; set; }
+
+        public DateTime Modified { get; set; }
     }
 
-    public static class EmployeeEntryExtensions
+    public static class EmployeeEntityExtensions
     {
         public static EmployeeEntry ToEntry(this EmployeeEntity entity)
         {
@@ -58,4 +56,26 @@ namespace Shinetechchina.Employee.Repository.Shared
             return entry;
         }
     }
+
+    public static class EmployeeEntryExtensions
+    {
+        public static EmployeeEntity ToEntity(this EmployeeEntry entry)
+        {
+            EmployeeEntity entity = new EmployeeEntity()
+            {
+                Email = entry.Email,
+                EmployeeID = entry.EmployeeID,
+                FirstName = entry.FirstName,
+                Gender = entry.Gender,
+                Id = entry.Id.Value,
+                LastName = entry.LastName,
+                Married = entry.Married,
+                Phone = entry.Phone,
+                Modified = entry.Modified,
+                Created = entry.Created
+            };
+            return entity;
+        }
+    }
 }
+

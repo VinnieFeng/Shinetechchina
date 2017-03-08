@@ -19,7 +19,7 @@ namespace Shinetechchina.Employee.Business.Shared
             Phone = entry.Phone;
         }
 
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
         public string EmployeeID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

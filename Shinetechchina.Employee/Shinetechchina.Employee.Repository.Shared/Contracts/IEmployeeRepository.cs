@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Shinetechchina.Employee.Repository.Shared
 {
@@ -9,7 +10,7 @@ namespace Shinetechchina.Employee.Repository.Shared
         /// </summary>
         /// <param name="id">employee id </param>
         /// <returns>employee entry</returns>
-        EmployeeEntry GetEmployee(string id);
+        EmployeeEntry GetEmployee(Guid id);
 
         /// <summary>
         /// get all employee without paged
@@ -29,7 +30,7 @@ namespace Shinetechchina.Employee.Repository.Shared
         /// </summary>
         /// <param name="employee">emplouee id</param>
         /// <returns>is success </returns>
-        void DeleteEmployee(string employeeID);
+        void DeleteEmployee(Guid employeeID);
 
         /// <summary>
         /// update an employee 

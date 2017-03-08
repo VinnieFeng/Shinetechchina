@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Shinetechchina.Employee.Business.Shared
 {
@@ -9,7 +10,7 @@ namespace Shinetechchina.Employee.Business.Shared
         /// </summary>
         /// <param name="id">employeeid</param>
         /// <returns>employee model</returns>
-        EmployeeModel GetEmployee(string id);
+        EmployeeModel GetEmployee(Guid id);
 
         /// <summary>
         /// get all employee with out paged
@@ -36,6 +37,6 @@ namespace Shinetechchina.Employee.Business.Shared
         /// </summary>
         /// <param name="id">employee ID</param>
         /// <returns>is success </returns>
-        void DeleteEmployee(string id);
+        void DeleteEmployee(Guid id);
     }
 }

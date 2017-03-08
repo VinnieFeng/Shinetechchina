@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Employee]
 (
-	[Id] [uniqueidentifier] NOT NULL,
+	[Id] UNIQUEIDENTIFIER NOT NULL ,
 	[EmployeeID] [nchar](20) NOT NULL,
 	[FirstName] [nvarchar](50) NOT NULL,
 	[LastName] [nvarchar](50) NOT NULL,
@@ -9,5 +9,6 @@
 	[Phone] [nvarchar](50) NULL,
 	[Email] [nvarchar](50) NULL, 
     [Created] DATETIME NOT NULL, 
-    [Modified] DATETIME NOT NULL,
+    [Modified] DATETIME NOT NULL, 
+    CONSTRAINT [PK_Employee] PRIMARY KEY ([Id]),
 )

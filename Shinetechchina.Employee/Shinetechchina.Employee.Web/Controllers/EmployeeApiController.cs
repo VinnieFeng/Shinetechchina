@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Shinetechchina.Employee.Business.Shared;
 using Shinetechchina.Employee.Web.Models;
+using System;
 
 namespace Shinetechchina.Employee.Web.Controllers
 {
@@ -25,7 +26,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         }
 
         // GET: api/Employees/5
-        public EmployeeViewModel Get(string id)
+        public EmployeeViewModel Get(Guid id)
         {
             var employee = employeeManager.GetEmployee(id);
             return new EmployeeViewModel(employee);
@@ -40,7 +41,7 @@ namespace Shinetechchina.Employee.Web.Controllers
         }
 
         // PUT: api/Employees/5
-        public HttpResponseMessage Put(string id, EmployeeViewModel emp)
+        public HttpResponseMessage Put(Guid id, EmployeeViewModel emp)
         {
             employeeManager.UpdateEmployee(emp.ToModel());
             return Request.CreateResponse(System.Net.HttpStatusCode.OK);
@@ -48,7 +49,7 @@ namespace Shinetechchina.Employee.Web.Controllers
 
         // DELETE: api/Employees/5
         [HttpDelete]
-        public HttpResponseMessage Delete(string id)
+        public HttpResponseMessage Delete(Guid id)
         {
             employeeManager.DeleteEmployee(id);
             return Request.CreateResponse(System.Net.HttpStatusCode.OK);

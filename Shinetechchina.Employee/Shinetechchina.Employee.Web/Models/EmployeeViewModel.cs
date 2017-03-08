@@ -23,7 +23,7 @@ namespace Shinetechchina.Employee.Web.Models
             Phone = model.Phone;
         }
 
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
         public string EmployeeID { get; set; }
 

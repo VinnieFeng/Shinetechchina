@@ -32,10 +32,10 @@ namespace Shinetechchina.Employee.Repository.Mock
             };
             EmployeeEntry result = new EmployeeEntry { Email = "Email", EmployeeID = "EmployeeID1", FirstName = "FirstName1", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
             mock.Setup(m => m.EmployeeRepository.AddEmployee(It.IsAny<EmployeeEntry>()));
-            mock.Setup(m => m.EmployeeRepository.DeleteEmployee(It.IsAny<string>()));
+            mock.Setup(m => m.EmployeeRepository.DeleteEmployee(It.IsAny<Guid>()));
             mock.Setup(m => m.EmployeeRepository.UpdateEmployee(It.IsAny<EmployeeEntry>()));
             mock.Setup(m => m.EmployeeRepository.GetAllEmployee()).Returns(data);
-            mock.Setup(m => m.EmployeeRepository.GetEmployee(It.IsAny<string>())).Returns(result);
+            mock.Setup(m => m.EmployeeRepository.GetEmployee(It.IsAny<Guid>())).Returns(result);
             mock.Setup(m => m.Commit()).Returns(1);
         }
     }

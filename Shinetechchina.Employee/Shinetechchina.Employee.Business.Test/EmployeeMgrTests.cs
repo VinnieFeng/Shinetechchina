@@ -25,9 +25,9 @@ namespace Shinetechchina.Employee.Business.Core.Tests
         [TestMethod()]
         public void DeleteEmployeeTest()
         {
-            _unitOfWork.Setup(m => m.EmployeeRepository.DeleteEmployee(It.IsAny<string>()));
+            _unitOfWork.Setup(m => m.EmployeeRepository.DeleteEmployee(It.IsAny<Guid>()));
             EmployeeMgr employeeMgr = new EmployeeMgr(_unitOfWork.Object);
-            employeeMgr.DeleteEmployee("1");
+            employeeMgr.DeleteEmployee(Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"));
             _unitOfWork.Verify(m => m.Commit());
         }
 
@@ -35,9 +35,9 @@ namespace Shinetechchina.Employee.Business.Core.Tests
         public void GetAllEmployeeTest()
         {
             List<EmployeeEntry> mockData = new List<EmployeeEntry>() {
-                    new EmployeeEntry { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                    new EmployeeEntry { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                    new EmployeeEntry { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                    new EmployeeEntry { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntry { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntry { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"), LastName="LastName", Phone="Phone" },
               };
             _unitOfWork.Setup(m => m.EmployeeRepository.GetAllEmployee()).Returns((mockData));
             EmployeeMgr employeeMgr = new EmployeeMgr(_unitOfWork.Object);
@@ -49,11 +49,11 @@ namespace Shinetechchina.Employee.Business.Core.Tests
         [TestMethod()]
         public void GetEmployeeTest()
         {
-            EmployeeEntry mockData = new EmployeeEntry { Email = "Email", EmployeeID = "EmployeeID", FirstName = "FirstName1", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
-            _unitOfWork.Setup(m => m.EmployeeRepository.GetEmployee("EmployeeID")).Returns((mockData));
+            EmployeeEntry mockData = new EmployeeEntry { Email = "Email", EmployeeID = "EmployeeID", FirstName = "FirstName1", Id = Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"), LastName = "LastName", Phone = "Phone" };
+            _unitOfWork.Setup(m => m.EmployeeRepository.GetEmployee(Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"))).Returns((mockData));
 
             EmployeeMgr employeeMgr = new EmployeeMgr(_unitOfWork.Object);
-            EmployeeModel result = employeeMgr.GetEmployee("EmployeeID");
+            EmployeeModel result = employeeMgr.GetEmployee(Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"));
             Assert.IsTrue(result.EmployeeID == mockData.EmployeeID
                 && result.Email == mockData.Email
                 && result.FirstName == mockData.FirstName
@@ -64,7 +64,7 @@ namespace Shinetechchina.Employee.Business.Core.Tests
         [TestMethod()]
         public void UpdateEmployeeTest()
         {
-            EmployeeModel mockData = new EmployeeModel { Email = "Email", EmployeeID = "EmployeeID", FirstName = "FirstName1", Id = Guid.NewGuid(), LastName = "LastName", Phone = "Phone" };
+            EmployeeModel mockData = new EmployeeModel { Email = "Email", EmployeeID = "EmployeeID", FirstName = "FirstName1", Id = Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"), LastName = "LastName", Phone = "Phone" };
             _unitOfWork.Setup(m => m.EmployeeRepository.UpdateEmployee(It.IsAny<EmployeeEntry>()));
 
             EmployeeMgr employeeMgr = new EmployeeMgr(_unitOfWork.Object);

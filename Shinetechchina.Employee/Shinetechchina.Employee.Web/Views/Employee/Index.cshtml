@@ -36,7 +36,7 @@
                         <button class="btn" ng-click="openEditForm(e)">
                             <span class="glyphicon glyphicon-pencil" style="color:blue"></span>&nbsp;&nbsp;Edit
                         </button>
-                        <button class="btn" ng-click="delEmployee(e.EmployeeID)">
+                        <button class="btn" ng-click="delEmployee(e.Id)">
                             <span class="glyphicon glyphicon-remove" style="color:red"></span>&nbsp;&nbsp;Delete
                         </button>
                     </td>
@@ -53,6 +53,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     <h4 class="modal-title" id="myModalLabel">Employee Information</h4>
                     <input type="hidden" ng-model="Employee.EmployeeID" name="EmployeeID" />
+                    <input type="hidden" ng-model="Employee.Id" name="Id" />
                 </div>
                 <div class="modal-body" style="height:150px;">
                     <div class="form-group">

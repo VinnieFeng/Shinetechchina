@@ -3,7 +3,6 @@
 
     employeeApp.constant('EMPLOYEE_API_URI', '/api/Employees/')
         .factory('employeeService', function ($http, EMPLOYEE_API_URI, $log) {
-
             var employeeService = {};
             employeeService.getEmployees = function () {
                 return $http.get(EMPLOYEE_API_URI);
@@ -12,7 +11,7 @@
                 return $http.post(EMPLOYEE_API_URI, d);
             };
             employeeService.updateEmployee = function (d) {
-                return $http.put(EMPLOYEE_API_URI + d.EmployeeID, d);
+                return $http.put(EMPLOYEE_API_URI + d.Id, d);
             };
             employeeService.deleteEmployee = function (id) {
                 return $http.delete(EMPLOYEE_API_URI + id);
@@ -22,7 +21,7 @@
 
     employeeApp.controller('employeeCtrl', function ($scope, employeeService) {
         $scope.EmployeeList = [];
-        $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '', IsAdd: false };
+        $scope.Employee = { Id: null, EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '', IsAdd: false };
         var $body = $('body');
         $scope.loadEmployeeList = function loadEmployeeList() {
             employeeService.getEmployees().then(function (response) {
@@ -36,7 +35,7 @@
             if ($scope.Employee.IsAdd) {
                 $body.mask('processing', 500);
                 employeeService.addEmployee($scope.Employee).then(function (response) {
-                    $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
+                    $scope.Employee = { Id: null, EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
                     $scope.loadEmployeeList();
                     $scope.closeAddForm();
                     showAlert('success', 'success');
@@ -48,7 +47,7 @@
             } else {
                 $body.mask('processing', 500);
                 employeeService.updateEmployee($scope.Employee).then(function (response) {
-                    $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
+                    $scope.Employee = { Id: null, EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '' };
                     $scope.loadEmployeeList();
                     $scope.closeAddForm();
                     showAlert('success', 'success');
@@ -77,20 +76,21 @@
             }
         };
 
-        $scope.openEditForm = function (emp) {
+        $scope.openEditForm = function (data) {
             $scope.Employee.IsAdd = false;
-            $scope.Employee.EmployeeID = emp.EmployeeID;
-            $scope.Employee.FirstName = emp.FirstName;
-            $scope.Employee.LastName = emp.LastName;
-            $scope.Employee.Phone = emp.Phone;
-            $scope.Employee.Email = emp.Email;
+            $scope.Employee.EmployeeID = data.EmployeeID;
+            $scope.Employee.FirstName = data.FirstName;
+            $scope.Employee.LastName = data.LastName;
+            $scope.Employee.Phone = data.Phone;
+            $scope.Employee.Email = data.Email;
+            $scope.Employee.Id = data.Id;
             $('#formModal').modal({
                 keyboard: true,
             });
         };
 
         $scope.openAddForm = function () {
-            $scope.Employee = { EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '', IsAdd: true };
+            $scope.Employee = { Id: null, EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '', IsAdd: true };
             $('#formModal').modal({
                 keyboard: true,
             });

@@ -26,13 +26,9 @@ namespace Shinetechchina.Employee.Business.Core
             _unitOfWork.Commit();
         }
 
-        public void DeleteEmployee(string employeeID)
+        public void DeleteEmployee(Guid id)
         {
-            if (string.IsNullOrEmpty(employeeID))
-            {
-                throw new ArgumentNullException(nameof(employeeID));
-            }
-            _unitOfWork.EmployeeRepository.DeleteEmployee(employeeID);
+            _unitOfWork.EmployeeRepository.DeleteEmployee(id);
             _unitOfWork.Commit();
         }
 
@@ -42,13 +38,9 @@ namespace Shinetechchina.Employee.Business.Core
             return employeeList;
         }
 
-        public EmployeeModel GetEmployee(string employeeID)
+        public EmployeeModel GetEmployee(Guid id)
         {
-            if (string.IsNullOrEmpty(employeeID))
-            {
-                throw new ArgumentNullException(nameof(employeeID));
-            }
-            var employeeEntity = _unitOfWork.EmployeeRepository.GetEmployee(employeeID);
+            var employeeEntity = _unitOfWork.EmployeeRepository.GetEmployee(id);
             return new EmployeeModel(employeeEntity);
         }
 

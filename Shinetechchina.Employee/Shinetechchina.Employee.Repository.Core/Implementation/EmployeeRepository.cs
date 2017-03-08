@@ -2,6 +2,7 @@
 using System.Data.Entity;
 using System.Collections.Generic;
 using Shinetechchina.Employee.Repository.Shared;
+using System;
 
 namespace Shinetechchina.Employee.Repository.Core
 {
@@ -18,9 +19,9 @@ namespace Shinetechchina.Employee.Repository.Core
             employeeEntity = _context.Employees.Add(employeeEntity);
         }
 
-        public void DeleteEmployee(string employeeID)
+        public void DeleteEmployee(Guid id)
         {
-            var empployee = _context.Employees.First(t => t.EmployeeID == employeeID);
+            var empployee = _context.Employees.First(t => t.Id == id);
              _context.Employees.Remove(empployee);
         }
 
@@ -30,15 +31,15 @@ namespace Shinetechchina.Employee.Repository.Core
             return employees;
         }
 
-        public EmployeeEntry GetEmployee(string EmployeeID)
+        public EmployeeEntry GetEmployee(Guid id)
         {
-            var empployee = _context.Employees.FirstOrDefault(t => t.EmployeeID == EmployeeID);
+            var empployee = _context.Employees.FirstOrDefault(t => t.Id == id);
             return empployee.ToEntry();
         }
 
         public void UpdateEmployee(EmployeeEntry employee)
         {
-            var empployee = _context.Employees.FirstOrDefault(t => t.EmployeeID == employee.EmployeeID);
+            var empployee = _context.Employees.FirstOrDefault(t => t.Id == employee.Id);
             empployee.Email = employee.Email;
             empployee.EmployeeID = employee.EmployeeID;
             empployee.FirstName = employee.FirstName;

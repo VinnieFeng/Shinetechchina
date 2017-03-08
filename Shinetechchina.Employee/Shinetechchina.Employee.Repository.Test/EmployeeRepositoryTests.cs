@@ -15,6 +15,7 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
         private Mock<DbSet<EmployeeEntity>> set = null;
         private Mock<EmployeeDbContext> context = null;
         private IUnitOfWork unitOfWork = null;
+        List<EmployeeEntity> data = null;
 
         [TestMethod()]
         public void AddEmployeeTest()
@@ -32,15 +33,8 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
         [TestMethod()]
         public void DeleteEmployeeTest()
         {
-            // Create some test data
-            var data = new List<EmployeeEntity>
-            {
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-            };
             SetUpMock();
-            unitOfWork.EmployeeRepository.DeleteEmployee("EmployeeID1");
+            unitOfWork.EmployeeRepository.DeleteEmployee(Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"));
             unitOfWork.Commit();
             // Check the results
             set.Verify(m => m.Remove(It.IsAny<EmployeeEntity>()), Times.Once());
@@ -50,17 +44,9 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
         [TestMethod()]
         public void GetAllEmployeeTest()
         {
-            // Create some test data
-            var data = new List<EmployeeEntity>
-            {
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-            };
-
             // Create a mock set and context
             SetUpMock();
-            var resultList =unitOfWork.EmployeeRepository.GetAllEmployee().ToList();
+            var resultList = unitOfWork.EmployeeRepository.GetAllEmployee().ToList();
             // Check the results
             data.ForEach(m => Assert.IsTrue(resultList.Exists(r => r.EmployeeID == m.EmployeeID)));
         }
@@ -71,7 +57,7 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
             // Create a mock set and context
             SetUpMock();
 
-            var result = unitOfWork.EmployeeRepository.GetEmployee("EmployeeID1");
+            var result = unitOfWork.EmployeeRepository.GetEmployee(Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"));
             // Check the results
             Assert.IsTrue(result.FirstName == "FirstName1");
         }
@@ -79,11 +65,11 @@ namespace Shinetechchina.Employee.Repository.Core.Tests
         private void SetUpMock()
         {
             // Create some test data
-            var data = new List<EmployeeEntity>
+            data = new List<EmployeeEntity>
             {
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
-                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.NewGuid(), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID1", FirstName="FirstName1", Id=Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID2", FirstName="FirstName2", Id=Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"), LastName="LastName", Phone="Phone" },
+                        new EmployeeEntity { Email="Email", EmployeeID="EmployeeID3", FirstName="FirstName3", Id=Guid.Parse("{0F681332-D795-409A-85BB-B77678FB74EE}"), LastName="LastName", Phone="Phone" },
             };
 
             // Create a mock set and context
