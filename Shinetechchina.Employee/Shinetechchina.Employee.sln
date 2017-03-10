@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shinetechchina.Employee.Rep
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shinetechchina.Employee.Repository.Mock", "Shinetechchina.Employee.Repository.Mock\Shinetechchina.Employee.Repository.Mock.csproj", "{34255569-E481-4212-8C95-CAB69893311E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shinetechchina.Employee.Infrastructure", "Shinetechchina.Employee.Infrastructure\Shinetechchina.Employee.Infrastructure.csproj", "{9503AB49-BA3E-49A6-98F8-AED25F7B6ADC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +79,10 @@ Global
 		{34255569-E481-4212-8C95-CAB69893311E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34255569-E481-4212-8C95-CAB69893311E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34255569-E481-4212-8C95-CAB69893311E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9503AB49-BA3E-49A6-98F8-AED25F7B6ADC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9503AB49-BA3E-49A6-98F8-AED25F7B6ADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9503AB49-BA3E-49A6-98F8-AED25F7B6ADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9503AB49-BA3E-49A6-98F8-AED25F7B6ADC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

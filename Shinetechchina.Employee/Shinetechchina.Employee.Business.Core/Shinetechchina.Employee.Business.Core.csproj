@@ -64,6 +64,10 @@
       <Project>{ede87ed8-2fe7-41e2-82ab-3f1a2d59616d}</Project>
       <Name>Shinetechchina.Employee.Business.Shared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shinetechchina.Employee.Infrastructure\Shinetechchina.Employee.Infrastructure.csproj">
+      <Project>{9503AB49-BA3E-49A6-98F8-AED25F7B6ADC}</Project>
+      <Name>Shinetechchina.Employee.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shinetechchina.Employee.Repository.Core\Shinetechchina.Employee.Repository.Core.csproj">
       <Project>{8AF82A8A-12B2-4B17-A85B-7DD3690289AB}</Project>
       <Name>Shinetechchina.Employee.Repository.Core</Name>

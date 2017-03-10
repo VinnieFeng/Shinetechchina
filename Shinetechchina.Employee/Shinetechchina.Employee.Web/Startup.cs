@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: log4net.Config.XmlConfigurator(ConfigFile = "Web.config", Watch = true)]
+
 [assembly: OwinStartupAttribute(typeof(Shinetechchina.Employee.Web.Startup))]
 namespace Shinetechchina.Employee.Web
 {

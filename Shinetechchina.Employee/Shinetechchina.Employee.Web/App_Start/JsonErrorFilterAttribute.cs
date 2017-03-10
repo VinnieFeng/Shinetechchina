@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Web.Mvc;
 
-namespace Shinetechchina.Employee.Web.Plumbing
+namespace Shinetechchina.Employee.Web
 {
     /// <summary>
     /// Translates exceptions into brief json result and also modifies HttpStatus code to 500.

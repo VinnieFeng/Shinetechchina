@@ -1,7 +1,6 @@
-﻿using log4net;
+﻿using Shinetechchina.Employee.Infrastructure.Logging;
 using System.Net;
 using System.Net.Http;
-using System.Reflection;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 
@@ -23,8 +22,8 @@ namespace Shinetechchina.Employee.Web
     {
         public override void OnException(HttpActionExecutedContext context)
         {
-            ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-            log.Error("error in CustomerExceptionFilterAttribute", context.Exception);
+            ILogger log = new Logger();
+            log.Error("Error in CustomerExceptionFilterAttribute", context.Exception);
             context.Request.CreateErrorResponse(HttpStatusCode.NotFound, context.Exception);
         }
     }
