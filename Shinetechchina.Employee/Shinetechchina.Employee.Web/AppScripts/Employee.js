@@ -18,7 +18,18 @@
             };
             return employeeService;
         });
-
+    employeeApp.directive('onFinishRender', function ($timeout) {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attr) {
+                if (scope.$last === true) {
+                    $timeout(function () {
+                        scope.$emit(attr.onFinishRender);
+                    });
+                }
+            }
+        }
+    })
     employeeApp.controller('employeeCtrl', function ($scope, employeeService) {
         $scope.EmployeeList = [];
         $scope.Employee = { Id: null, EmployeeID: '', FirstName: '', LastName: '', Phone: '', Email: '', IsAdd: false };
@@ -61,19 +72,17 @@
 
         // Delete one customer based on id.
         $scope.delEmployee = function (id) {
-            if (confirm("Are you sure you want to delete this customer?")) {
-                // todo code for deletion
-                $body.mask('processing', 500);
-                employeeService.deleteEmployee(id).then(function (response) {
-                    showAlert('success', 'delete success');
-                    // Refresh list
-                    $scope.loadEmployeeList();
-                    $body.unmask();
-                }, function (e) {
-                    showAlert('error', e.data.Message);
-                    $body.unmask();
-                });
-            }
+            // todo code for deletion
+            $body.mask('processing', 500);
+            employeeService.deleteEmployee(id).then(function (response) {
+                showAlert('success', 'delete success');
+                // Refresh list
+                $scope.loadEmployeeList();
+                $body.unmask();
+            }, function (e) {
+                showAlert('error', e.data.Message);
+                $body.unmask();
+            });
         };
 
         $scope.openEditForm = function (data) {
@@ -101,8 +110,6 @@
 
         };
 
-        $scope.loadEmployeeList();
-
         function showAlert(type, msg) {
             var $alert = $(".alert-success");
             if (type === 'error') {
@@ -115,5 +122,16 @@
                 $alert.slideUp(500);
             });
         }
+        $scope.loadEmployeeList();
+
+        $scope.$on('ngRepeatFinished', function (ngRepeatFinishedEvent) {
+            $('[data-toggle=confirmation]').confirmation({
+                rootSelector: '[data-toggle=confirmation]',
+                onConfirm: function () {
+                    var id = $(this).data('id');
+                    $scope.delEmployee(id);
+                }
+            });
+        });
     });
 }(window.Employee = window.Employee || {}));

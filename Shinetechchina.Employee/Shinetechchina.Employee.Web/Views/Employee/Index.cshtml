@@ -26,17 +26,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="e in EmployeeList">
+                <tr ng-repeat="e in EmployeeList" on-finish-render="ngRepeatFinished">
                     <td ng-class-odd="'odd'">{{ e.EmployeeID }}</td>
                     <td ng-class-odd="'odd'">{{ e.FirstName }}</td>
                     <td ng-class-odd="'odd'">{{ e.LastName }}</td>
                     <td ng-class-odd="'odd'">{{ e.Phone }}</td>
                     <td ng-class-odd="'odd'">{{ e.Email }}</td>
                     <td ng-class-odd="'odd'">
-                        <button class="btn" ng-click="openEditForm(e)">
+                        <button class="btn btn-primary" ng-click="openEditForm(e)">
                             <span class="glyphicon glyphicon-pencil" style="color:blue"></span>&nbsp;&nbsp;Edit
                         </button>
-                        <button class="btn" ng-click="delEmployee(e.Id)">
+                        <button class="btn btn-danger" data-toggle="confirmation" data-title="Confirm Delete?" data-Id="{{ e.Id }}">
                             <span class="glyphicon glyphicon-remove" style="color:red"></span>&nbsp;&nbsp;Delete
                         </button>
                     </td>
@@ -103,6 +103,8 @@
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/angular")
     @Scripts.Render("~/bundles/loadmask")
+    <script src="~/Scripts/bootstrap-confirmation.js"></script>
     <script src="~/AppScripts/Employee.js"></script>
     <link href="~/Content/employee.css" rel="stylesheet" />
+
 }
